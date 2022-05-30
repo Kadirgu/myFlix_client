@@ -2,7 +2,7 @@
   "name": "myflix_client",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.html",
+  "default": "src/index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,5 +18,12 @@
   "bugs": {
     "url": "https://github.com/Kadirgu/myFlix_client/issues"
   },
-  "homepage": "https://github.com/Kadirgu/myFlix_client#readme"
+  "homepage": "https://github.com/Kadirgu/myFlix_client#readme",
+  "dependencies": {
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.0.0-rc.0"
+  }
 }
