@@ -1,85 +1,104 @@
-import React from "react";
+import React from 'react';
 import axios from 'axios';
 
-import { LoginView } from '../login-view/login-view';
-import { MovieCard } from "../movie-card/movie-card";
-import { MovieView } from "../movie-view/movie-view";
+//adding components to the main-view
 
+import { RegistrationView } from '../registration-view/registration-view';
+import { LoginView } from '../login-view/login-view';
+import { MovieCard } from '../movie-card/movie-card';
+import { MovieView } from '../movie-view/movie-view';
+
+//const Logo1 = require('../../img/movieposter1.jpg');
+//const Logo2 = require('../../img/movieposter2.jpg');
+//const Logo3 = require('../../img/movieposter3.jpeg');
+
+//getting array of movies from remote and displaying as a list
 export class MainView extends React.Component {
     constructor() {
         super();
+        //initial state for main-view
         this.state = {
-            movies: [
-                {
-                    _id: 1,
-                    Title: "Inception",
-                    Description: "desc1...",
-                    ImagePath: "...",
-                },
-                {
-                    _id: 2,
-                    Title: "The Shawshank Redemption",
-                    Description: "desc2...",
-                    ImagePath: "...",
-                },
-                {
-                    _id: 3,
-                    Title: "Gladiator",
-                    Description: "desc3...",
-                    ImagePath: "...",
-                },
-            ],
+            movies: [],
             selectedMovie: null,
+            registered: null,
+            user: null,
         };
     }
-
     componentDidMount() {
-        axios.get('https://my-flix-api123.herokuapp.com/movies')
-            .then(response => {
-                this.setState({
-                    movies: response.data
-                });
+        axios
+            .get('https://my-flix-api123.herokuapp.com/movies')
+            .then((response) => {
+                this.setState({ movies: response.data });
             })
-            .catch(error => {
+            .catch((error) => {
                 console.log(error);
             });
     }
 
-    setSelectedMovie(movie) {
+    //sets the selected movie state with value
+    setSelectedMovie(newSelectedMovie) {
         this.setState({
-            selectedMovie: movie
+            selectedMovie: newSelectedMovie,
         });
     }
 
-    /* When a user successfully logs in, this function updates the `user` property in state to that *particular user*/
-
+    //when user is verified set state to current user
     onLoggedIn(user) {
         this.setState({
-            user
+            user,
+        });
+    }
+
+    onRegister(registered) {
+        this.setState({
+            registered,
         });
     }
 
     render() {
-        const { movies, selectedMovie, user } = this.state;
+        const { movies, selectedMovie, user, registered } = this.state;
 
-        /* If there is no user, the LoginView is rendered. If there is a user logged in, the user details are *passed as a prop to the LoginView*/
-        if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
+        //forcing a registration form for testing
+        if (registered) {
+            return <RegistrationView onRegister={(bool) => this.onRegister(bool)} />;
+        }
 
-        // Before the movies have been loaded
-        if (movies.length === 0) return <div className="main-view" />;
+        //if user is no logged in - force a login form
+        if (!user) {
+            return (
+                <LoginView
+                    onLoggedIn={(user) => this.onLoggedIn(user)}
+                    onRegister={(bool) => this.onRegister(bool)}
+                />
+            );
+        }
 
+        if (movies.length === 0)
+            return <div className="main-view">The list is empty</div>;
+
+        //if no movie is selected show the list -
+        //if a movie is selected show the Movie View details
         return (
-            <div className="main-view">
-                {/*If the state of `selectedMovie` is not null, that selected movie will be returned otherwise, all *movies will be returned*/}
-                {selectedMovie
-                    ? <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
-                    : movies.map(movie => (
-                        <MovieCard key={movie._id} movie={movie} onMovieClick={(newSelectedMovie) => { this.setSelectedMovie(newSelectedMovie) }} />
+            <div className="main-vew">
+                {selectedMovie ? (
+                    <MovieView
+                        movie={selectedMovie}
+                        onBackClick={(newSelectedMovie) => {
+                            this.setSelectedMovie(newSelectedMovie);
+                        }}
+                    />
+                ) : (
+                    movies.map((movie) => (
+                        <MovieCard
+                            key={movie._id}
+                            movie={movie}
+                            onMovieClick={(movie) => {
+                                this.setSelectedMovie(movie);
+                            }}
+                        />
                     ))
-                }
+                )}
             </div>
         );
     }
-
 }
-export default MainView;
