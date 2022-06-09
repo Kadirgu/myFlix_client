@@ -1,4 +1,6 @@
 import React from 'react';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 export class MovieView extends React.Component {
 
@@ -18,24 +20,25 @@ export class MovieView extends React.Component {
         const { movie, onBackClick } = this.props;
 
         return (
-            <div className="movie-view">
-                <div className="movie-poster">
-                    <img src={movie.ImagePath} />
-                </div>
-                <div className="movie-title">
-                    <span className="label">Title: </span>
-                    <span className="value">{movie.Title}</span>
-                </div>
-                <div className="movie-description">
-                    <span className="label">Description: </span>
-                    <span className="value">{movie.Description}</span>
-                </div>
-                <button onClick={() => { onBackClick(null); }}>Back</button>
-
+            <div className="main-view">
+                {selectedMovie
+                    ? (
+                        <Row>
+                            <Col>
+                                <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
+                            </Col>
+                        </Row>
+                    )
+                    : movies.map(movie => (
+                        <MovieCard key={movie._id} movie={movie} onMovieClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
+                    ))
+                }
             </div>
         );
+
     }
 }
+
 MovieView.propTypes = {
     movie: PropTypes.shape({
         Title: PropTypes.string.isRequired,
