@@ -14,7 +14,7 @@ export function LoginView(props) {
     const handleSubmit = (e) => {
         e.preventDefault();
         /* Send a request to the server for authentication */
-        axios.post('https://git.heroku.com/my-flix-api123.git/login', {
+        axios.post('https://git.heroku.com/gentle-reef-88518.git/login', {
             Username: username,
             Password: password
         })

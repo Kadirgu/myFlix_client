@@ -12,7 +12,7 @@ export function RegisterView(props) {
 
     const handleRegistration = () => {
         e.preventDefault();
-        axios.post('https://my-flix-api123.herokuapp.com/users', {
+        axios.post('gentle-reef-88518.herokuapp.com/users', {
             Username: username,
             Password: password,
             Email: email

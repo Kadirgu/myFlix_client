@@ -20,7 +20,7 @@ export class MainView extends React.Component {
 
     //Logic to be executed after loading page
     componentDidMount() {
-        axios.get('https://my-flix-api123.herokuapp.com/movies')
+        axios.get('https://gentle-reef-88518.herokuapp.com/movies')
             .then(response => {
                 this.setState({
                     movies: response.data
