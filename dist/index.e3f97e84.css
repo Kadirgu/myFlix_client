@@ -1,0 +1,19 @@
+.card-img-top:hover {
+  cursor: pointer;
+  opacity: .92;
+  transition: all .2s;
+}
+
+.list-group-item {
+  color: gray;
+  font-size: .8rem;
+  font-weight: 300;
+}
+
+
+
+.my-flix {
+  color: #4682b4;
+}
+
+/*# sourceMappingURL=index.e3f97e84.css.map */

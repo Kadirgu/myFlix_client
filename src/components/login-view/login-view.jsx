@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import RegisterView from '../register-view/register-view';
+import RegisterView from '../registration-view/registration-view';
 import { Form, FormGroup, Button, Row, Col, Container } from 'react-bootstrap';
 import axios from 'axios';
 
