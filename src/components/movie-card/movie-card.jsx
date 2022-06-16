@@ -1,9 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import './movie-card.scss'
-
-
-import React from 'react';
 
 export class MovieCard extends React.Component {
   render() {
