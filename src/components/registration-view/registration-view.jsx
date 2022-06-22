@@ -84,11 +84,11 @@ export function RegisterView(props) {
     );
 }
 
-// RegisterView.propTypes = {
-//     user: PropTypes.exact({
-//       username: PropTypes.string.isRequired,
-//       password: PropTypes.string.isRequired,
-//       email: PropTypes.string.isRequired,
-//       birthday: PropTypes.string.isRequired
-//     }).isRequired,
-//   };
+RegisterView.propTypes = {
+    user: PropTypes.exact({
+        username: PropTypes.string.isRequired,
+        password: PropTypes.string.isRequired,
+        email: PropTypes.string.isRequired,
+        birthday: PropTypes.string.isRequired
+    }).isRequired,
+};

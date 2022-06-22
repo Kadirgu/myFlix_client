@@ -65,7 +65,7 @@ export function LoginView(props) {
                 <p>Please enter your details to login into the application.</p>
                 <p>
                     If you don't have an account, please{" "}
-                    <Link to={"/register"}> click here </Link> to register.
+                    <Link to={"gentle-reef-88518.herokuapp.com/users"}> click here </Link> to register.
                 </p>
             </Col>
             <Col></Col>
