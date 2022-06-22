@@ -78,9 +78,6 @@ export function RegisterView(props) {
             </Row>
         </Container>
 
-
-
-
     );
 }
 
