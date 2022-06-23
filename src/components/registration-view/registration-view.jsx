@@ -10,7 +10,7 @@ export function RegisterView(props) {
     const [birthday, setBirthday] = useState('')
 
 
-    const handleRegistration = () => {
+    const handleRegistration = (e) => {
         e.preventDefault();
         axios.post('gentle-reef-88518.herokuapp.com/users', {
             Username: username,

@@ -36423,7 +36423,7 @@ function RegisterView(props) {
     const [password, setPassword] = (0, _react.useState)("");
     const [email, setEmail] = (0, _react.useState)("");
     const [birthday, setBirthday] = (0, _react.useState)("");
-    const handleRegistration = ()=>{
+    const handleRegistration = (e)=>{
         e.preventDefault();
         (0, _axiosDefault.default).post("gentle-reef-88518.herokuapp.com/users", {
             Username: username,
