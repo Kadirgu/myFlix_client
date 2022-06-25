@@ -15,7 +15,8 @@ export function RegisterView(props) {
         axios.post('gentle-reef-88518.herokuapp.com/users', {
             Username: username,
             Password: password,
-            Email: email
+            Email: email,
+            Birthday: birthday
         })
             .then(response => {
                 console.log(response.data);

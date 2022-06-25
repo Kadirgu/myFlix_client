@@ -23,6 +23,7 @@ export function LoginView(props) {
                 props.onLoggedIn(data);
             })
             .catch((e) => {
+                alert('This user does not exist');
                 console.log("no such user");
             });
     };
@@ -80,3 +81,4 @@ LoginView.propTypes = {
     }),
     onLoggedIn: PropTypes.func.isRequired,
 };
+
