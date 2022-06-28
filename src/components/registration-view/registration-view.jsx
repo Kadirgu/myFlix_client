@@ -7,25 +7,63 @@ export function RegisterView(props) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
-    const [birthday, setBirthday] = useState('')
+    const [birthday, setBirthday] = useState('');
+    const [values, setValues] = useState({
+        usernameErr: '',
+        passwordErr: '',
+        emailErr: '',
+    });
 
 
-    const handleRegistration = (e) => {
+    // validate user inputs
+    const validate = () => {
+        let isReq = true;
+        if (!username) {
+            setValues({ ...values, usernameErr: 'Username required' });
+            isReq = false;
+        } else if (username.length < 2) {
+            setValues({ ...values, usernameErr: 'Username must be at least 2 characters long' });
+            isReq = false;
+        }
+        if (!password) {
+            setValues({ ...values, passwordErr: 'Password required' });
+            isReq = false;
+        } else if (password.length < 6) {
+            setValues({ ...values, passwordErr: 'Password must be at least 6 characters long' });
+            isReq = false;
+        }
+        if (!email) {
+            setValues({ ...values, emailErr: 'Email required' });
+            isReq = false;
+        } else if (email.indexOf('@') === -1) {
+            setValues({ ...values, emailErr: 'Enter valid email' });
+            isReq = false;
+        }
+        return isReq;
+    }
+
+    const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('gentle-reef-88518.herokuapp.com/users', {
-            Username: username,
-            Password: password,
-            Email: email,
-            Birthday: birthday
-        })
-            .then(response => {
-                console.log(response.data);
-                window.open('/', '_self');
+        const isReq = validate();
+        if (isReq) {
+            axios.post('https://gentle-reef-88518.herokuapp.com/users', {
+                Username: username,
+                Password: password,
+                Email: email,
+                Birthday: birthday,
+                FavoriteMovies: []
             })
-            .catch(e => {
-                console.log('Error during registration');
-                alert('Registration not completed');
-            });
+                .then(response => {
+                    const data = response.data;
+                    console.log(data);
+                    alert('Registration successful, please login.');
+                    window.open('/', '_self');
+                })
+                .catch(e => {
+                    console.log('Error');
+                    alert('Unable to register');
+                });
+        }
     };
 
     return (
@@ -71,7 +109,7 @@ export function RegisterView(props) {
                                 placeholder="Username"
                             />
                         </Form.Group>
-                        <Button type="submit" onClick={handleRegistration}>
+                        <Button type="submit" onClick={handleSubmit}>
                             Submit
                         </Button>
                     </Form>
