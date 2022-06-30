@@ -39,7 +39,7 @@ export function LoginView(props) {
         e.preventDefault();
         /* Send a request to the server for authentication */
         axios
-            .post("https://git.heroku.com/gentle-reef-88518.git/login", {
+            .post("localhost", {
                 Username: username,
                 Password: password,
             })
