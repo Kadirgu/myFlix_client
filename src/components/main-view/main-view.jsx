@@ -32,6 +32,19 @@ export class MainView extends React.Component {
         }
     }
 
+       /* When a user successfully logs in, this function updates the `user` property in state to that *particular user*/
+
+       onLoggedIn(authData) {
+        console.log(authData);
+        this.setState({
+            user: authData.user.Username,
+        });
+
+        localStorage.setItem("token", authData.token);
+        localStorage.setItem("user", authData.user.Username);
+        this.getMovies(authData.token);
+    }
+
     getMovies(token) {
         axios
             .get("https://gentle-reef-88518.herokuapp.com/movies", {
@@ -48,19 +61,7 @@ export class MainView extends React.Component {
             });
     }
 
-    /* When a user successfully logs in, this function updates the `user` property in state to that *particular user*/
-
-    onLoggedIn(authData) {
-        console.log(authData);
-        this.setState({
-            user: authData.user.Username,
-        });
-
-        localStorage.setItem("token", authData.token);
-        localStorage.setItem("user", authData.user.Username);
-        this.getMovies(authData.token);
-    }
-
+ 
     render() {
         const { movies, user } = this.state;
         return (
@@ -89,7 +90,7 @@ export class MainView extends React.Component {
                         render={() => {
                             if (user) return <Redirect to='/' />;
                             return (
-                                <Col>
+                                <Col lg={8} md={8}>
                                     <RegisterView />
                                 </Col>
                             );
@@ -101,7 +102,7 @@ export class MainView extends React.Component {
                         render={({ match, history }) => {
                             if (!user)
                                 return (
-                                    <Col>
+                                    <Col md={8}>
                                         <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
                                     </Col>
                                 );
