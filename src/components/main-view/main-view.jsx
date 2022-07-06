@@ -18,15 +18,31 @@ import { Col, Row } from 'react-bootstrap';
 
 import './main-view.scss';
 
-export class MainView extends React.Component {
-    constructor() {
+class MainView extends React.Component {
+
+    constructor(){
         super();
-        // Initial state is set to null
-        this.state = {
+        // initial state
+        this.state = { 
             movies: [],
-            user: null,
+            user: null
         };
     }
+
+    getMovies(token) {
+        axios.get('https://localhost:1234/movies', {
+            headers: { Authorization: `Bearer ${token}`}
+        })
+        .then(response => {
+            // Assign the result to the state
+            this.setState({
+            movies: response.data
+            });
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    }  
 
     componentDidMount() {
         let accessToken = localStorage.getItem("token");
