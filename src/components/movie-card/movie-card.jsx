@@ -1,11 +1,46 @@
 import React from 'react';
+import axios from 'axios';
 import PropTypes from 'prop-types';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
+import {Button, Card} from 'react-bootstrap';
+
 
 import { Link } from "react-router-dom";
 
 export class MovieCard extends React.Component {
+  
+      // Add Favorite movie 
+      addToFavs(movieId) {
+        const currentUser = localStorage.getItem('user');
+        const token = localStorage.getItem('token');
+        axios.post(`https://localhost:2222/users/${currentUser}/movies/${movieId}`, 
+        {},
+        {
+          headers: { Authorization: `Bearer ${token}`}
+        })
+        .then((response) => {
+          console.log(response.data)
+          alert(`The movie was successfully added to your list.`)
+        }).
+        catch(error => console.error(error))
+    }
+
+    // Remove Favorite movie 
+    remFromFavs(movieId) {
+        const currentUser = localStorage.getItem('user');
+        const token = localStorage.getItem('token');
+        axios.delete(`https://localhost:2222/users/${currentUser}/movies/${movieId}`, 
+        {},
+        {
+          headers: { Authorization: `Bearer ${token}`}
+        })
+        .then((response) => {
+          console.log(response.data)
+          alert(`The movie was successfully removed from your list.`)
+        }).
+        catch(error => console.error(error))
+    }
+
+  
   render() {
     const { movie } = this.props;
 
