@@ -8,12 +8,11 @@ import { Link } from "react-router-dom";
 import "./login-view.scss";
 
 export function LoginView(props) {
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
     // Declare hook for each input
     const [usernameErr, setUsernameErr] = useState('');
     const [passwordErr, setPasswordErr] = useState('');
-
 
     // Validate user inputs
     const validate = () => {
@@ -37,6 +36,8 @@ export function LoginView(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        const isReq = validate();
+        if (isReq) {
         /* Send a request to the server for authentication */
         axios
             .post("http://localhost:1234/login", {
@@ -51,6 +52,7 @@ export function LoginView(props) {
                 alert('This user does not exist');
                 console.log("no such user");
             });
+        }
     };
 
     return (
