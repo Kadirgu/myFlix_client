@@ -1,12 +1,15 @@
-import PropTypes from "prop-types";
-import React from "react";
-import { Button, Col, Container, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import React from 'react';
+import axios from 'axios';
+import PropTypes from 'prop-types';
 
+import { Link } from 'react-router-dom';
+import {Card, Button} from 'react-bootstrap';
+
+import './movie-view.scss';
+
+/*MovieView: display details about a movie clicked by user*/
 export class MovieView extends React.Component {
-    keypressCallback(event) {
-        console.log(event.key);
-    }
+
 
     componentDidMount() {
         document.addEventListener("keypress", this.keypressCallback);
@@ -56,17 +59,24 @@ export class MovieView extends React.Component {
     }
 }
 
+/*  -- specify how MovieView's props should look: -- */
 MovieView.propTypes = {
-    movie: PropTypes.shape({
-        Title: PropTypes.string.isRequired,
-        Description: PropTypes.string.isRequired,
-        Genre: PropTypes.shape({
-            Name: PropTypes.string,
-        }),
-        Director: PropTypes.shape({
-            Name: PropTypes.string,
-        }),
-    }).isRequired,
-
-    onBackClick: PropTypes.func.isRequired,
+    movie:  PropTypes.shape({
+                Title:              PropTypes.string.isRequired,
+                Description:        PropTypes.string.isRequired,
+                Genre: PropTypes.shape({
+                    Name:           PropTypes.string.isRequired,
+                    Description:    PropTypes.string.isRequired
+                }).isRequired,
+                Director: PropTypes.shape({
+                    Name:           PropTypes.string.isRequired,
+                    Bio:            PropTypes.string.isRequired, 
+                    Birth:          PropTypes.string.isRequired,
+                    Death:          PropTypes.string
+                }).isRequired,
+                Actors:             PropTypes.arrayOf(PropTypes.string).isRequired,
+                ImagePath:          PropTypes.string.isRequired,
+                Featured:           PropTypes.bool.isRequired
+            }).isRequired,
+    onBackClick: PropTypes.func.isRequired
 };
