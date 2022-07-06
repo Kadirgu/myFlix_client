@@ -68,19 +68,19 @@
   font-size: 18px;
 }
 
-.poster {
-  height: auto;
-  opacity: 1 !important;
-  cursor: default !important;
-  max-width: 25rem !important;
-}
+
 
 .form-element {
   margin-top: 60px;
   display: inline-block;
 }
 
-
+.poster {
+  height: auto;
+  opacity: 1 !important;
+  cursor: default !important;
+  max-width: 25rem !important;
+}
 
 .my-flix {
   color: #4682b4;
