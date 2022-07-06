@@ -1,13 +1,23 @@
-.card-img-top:hover {
-  cursor: pointer;
-  opacity: .92;
-  transition: all .2s;
+.cards {
+  height: 520px;
+  margin: 30px 5px;
 }
 
-.list-group-item {
-  color: gray;
-  font-size: .8rem;
-  font-weight: 300;
+.cards-img {
+  height: 300px;
+  object-fit: contain;
+}
+
+.cards-title {
+  height: 50px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.div-fav-buttons {
+  justify-content: space-around;
+  align-items: center;
+  display: flex;
 }
 
 .login-form {

@@ -7,14 +7,13 @@ import { Link } from "react-router-dom";
 
 import './movie-card.scss';
 
-
 export class MovieCard extends React.Component {
 
     // Add Favorite movie 
     addToFavs(movieId) {
         const currentUser = localStorage.getItem('user');
         const token = localStorage.getItem('token');
-        axios.post(`https://localhost:50442/users/${currentUser}/movies/${movieId}`, 
+        axios.post(`https://localhost:1234/users/${currentUser}/movies/${movieId}`, 
         {},
         {
           headers: { Authorization: `Bearer ${token}`}
@@ -30,7 +29,7 @@ export class MovieCard extends React.Component {
     remFromFavs(movieId) {
         const currentUser = localStorage.getItem('user');
         const token = localStorage.getItem('token');
-        axios.delete(`https://localhost:50442/users/${currentUser}/movies/${movieId}`, 
+        axios.delete(`https://localhost:1234/users/${currentUser}/movies/${movieId}`, 
         {},
         {
           headers: { Authorization: `Bearer ${token}`}

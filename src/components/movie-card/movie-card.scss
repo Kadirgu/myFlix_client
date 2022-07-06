@@ -1,11 +1,21 @@
-.card-img-top:hover {
-    cursor: pointer;
-    opacity: 0.92;
-    transition: ease 200ms;
+.cards {         
+    height: 520px;
+    margin: 30px 5px;
 }
 
-.list-group-item {
-    color: grey;
-    font-weight: 300;
-    font-size: 0.8rem;
+.cards-img {   
+    height: 300px;
+    object-fit: contain;
+}
+
+.cards-title {
+    height: 50px;
+    font-weight:700;
+    text-align: center; 
+}
+
+.div-fav-buttons{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
