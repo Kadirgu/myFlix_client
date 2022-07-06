@@ -48,7 +48,7 @@ export class MainView extends React.Component {
 
     getMovies(token) {
         axios
-            .get("http://localhost:2222/movies", {
+            .get("http://localhost:1234/movies", {
                 headers: { Authorization: `Bearer ${token}` },
             })
             .then((response) => {

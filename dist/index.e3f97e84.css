@@ -12,7 +12,19 @@
 
 
 
+.label {
+  font-weight: bold;
+}
 
+.left-col {
+  text-align: right;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.right-col {
+  font-size: 18px;
+}
 
 
 

@@ -15,7 +15,7 @@ export function ProfileView(props) {
     const token = localStorage.getItem('token');
 
     const getUser = () => {
-        axios.get(`htpps://localhost:2222/users/${currentUser}`, {
+        axios.get(`htpps://localhost:1234/users/${currentUser}`, {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then(response => {
@@ -30,7 +30,7 @@ export function ProfileView(props) {
     }, [])
 
     const handleDelete = () => {
-        axios.delete(`https://localhost:2222/users/${currentUser}`, {
+        axios.delete(`https://localhost:1234/users/${currentUser}`, {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then(() => {
