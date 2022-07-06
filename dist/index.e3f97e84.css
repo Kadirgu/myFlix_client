@@ -10,7 +10,9 @@
   font-weight: 300;
 }
 
-
+.login-form {
+  padding: 5rem 8rem;
+}
 
 .label {
   font-weight: bold;
@@ -35,6 +37,15 @@
 .right-col {
   font-size: 18px;
 }
+
+.poster {
+  height: auto;
+  opacity: 1 !important;
+  cursor: default !important;
+  max-width: 25rem !important;
+}
+
+
 
 
 

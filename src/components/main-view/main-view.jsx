@@ -1,17 +1,22 @@
-import axios from "axios";
-import React from "react";
-import { BrowserRouter as Router, Redirect, Route } from "react-router-dom";
 
-import { DirectorView } from "../director-view/director-view";
-import { GenreView } from "../genre-view/genre-view";
-import { LoginView } from "../login-view/login-view";
-import { MovieCard } from "../movie-card/movie-card";
-import { MovieView } from "../movie-view/movie-view";
-import { RegisterView } from "../registration-view/registration-view";
-import { Menubar} from '../nav-bar/nav-bar';
+import React from 'react';
+import axios from 'axios';
 
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+
+import { MovieCard }        from '../movie-card/movie-card';
+import { MovieView }        from '../movie-view/movie-view';
+import { LoginView }        from '../login-view/login-view';
+import { RegistrationView } from '../registration-view/registration-view';
+import { Menubar }          from '../nav-bar/nav-bar';
+import { DirectorView }     from '../director-view/director-view';
+import { GenreView }        from '../genre-view/genre-view';
+import { ProfileView }      from '../profile-view/profile-view';
+
+
+import { Col, Row } from 'react-bootstrap';
+
+import './main-view.scss';
 
 export class MainView extends React.Component {
     constructor() {
