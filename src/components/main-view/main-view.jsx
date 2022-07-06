@@ -8,6 +8,7 @@ import { LoginView } from "../login-view/login-view";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { RegisterView } from "../registration-view/registration-view";
+import { Menubar} from '../nav-bar/nav-bar';
 
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -47,7 +48,7 @@ export class MainView extends React.Component {
 
     getMovies(token) {
         axios
-            .get("https://gentle-reef-88518.herokuapp.com/movies", {
+            .get("http://localhost:2222/movies", {
                 headers: { Authorization: `Bearer ${token}` },
             })
             .then((response) => {
@@ -64,8 +65,10 @@ export class MainView extends React.Component {
  
     render() {
         const { movies, user } = this.state;
+
         return (
             <Router>
+                <Menubar user={user} />
                 <Row className='main-view justify-content-md-center'>
                     <Route
                         exact

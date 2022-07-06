@@ -1,66 +1,67 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { Navbar, Container, Nav, Button, Form, FormControl, } from "react-bootstrap";
-import "nav-bar.scss";
+import React from 'react';
+import { Navbar, Container, Nav, Button } from 'react-bootstrap';
 
-export function Menu(props) {
+import './nav-bar.scss';
+
+export function Menubar({ user }) {
+
     const onLoggedOut = () => {
         localStorage.clear();
-        window.open("/", "_self");
+        window.open('/', '_self');
     };
 
-    const user = props.user;
-
     const isAuth = () => {
-        if (typeof window == "undefined") {
+        if(typeof window=="undefined"){
             return false;
-        }
+        }     
         if (localStorage.getItem("token")) {
             return localStorage.getItem("token");
         } else {
             return false;
         }
     };
-
-    return (
-        <Navbar
-            className="main-nav"
-            sticky="top"
-            bg="dark"
-            expand="lg"
-            variant="dark"
-        >
+  
+    return (        
+        <Navbar className="main-nav" sticky="top" bg="dark" expand="sm" variant="dark">
             <Container>
-                <Navbar.Brand className="navbar-logo" href="/">
-                    My Flix
-                </Navbar.Brand>
-                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+            <Navbar.Brand 
+                className="navbar-logo"
+                href="/"> My Flix
+            </Navbar.Brand>
+                <Navbar.Toggle 
+                    aria-controls="responsive-navbar-nav"/>
                 <Navbar.Collapse id="responsive-navbar-nav">
-                    <nav className="ml-auto">
-                        {isAuth() && <Link to={`/usersfind/${user}`}>{user}</Link>}
+                    <Nav className="ml-auto">
 
                         {isAuth() && (
-                            <Button variant="link" onClick={() => onLoggedOut()}>
-                                Logout
-                            </Button>
+                            <Nav.Link 
+                                href={`/users/${user}`}>{user}
+                            </Nav.Link>
                         )}
-                        {!isAuth() && <Nav.Link href="/">Sign-in</Nav.Link>}
-                        {!isAuth() && <Nav.Link href="/register">Sign-up</Nav.Link>}
-                    </nav>
+
+                        {isAuth() && (
+                            <Button 
+                                variant="link" 
+                                onClick={()=>{onLoggedOut()}}>Logout
+                            </Button>
+                        )}  
+
+                        {!isAuth() && (
+                            <Nav.Link 
+                                href={"/login"} >Login
+                            </Nav.Link>
+                        )}
+
+                        {!isAuth() && (
+                            <Nav.Link 
+                                href={"/register"} >Register
+                            </Nav.Link>
+                        )}
+
+                    </Nav>
+
                 </Navbar.Collapse>
-                {isAuth() && (
-                    <Form
-                        inline="true"
-                        onChange={(event) => props.onSearchBarChange(event)}
-                    >
-                        <FormControl
-                            type="text"
-                            placeholder="Search titles!"
-                            className="mr-sm-2"
-                        />
-                    </Form>
-                )}
             </Container>
-        </Navbar>
+        </Navbar>         
     );
 }

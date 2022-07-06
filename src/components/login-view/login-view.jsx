@@ -39,7 +39,7 @@ export function LoginView(props) {
         e.preventDefault();
         /* Send a request to the server for authentication */
         axios
-            .post("localhost", {
+            .post("http://localhost:2222/login", {
                 Username: username,
                 Password: password,
             })
