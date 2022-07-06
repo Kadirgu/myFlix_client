@@ -63,7 +63,6 @@ import { MovieCard } from '../movie-card/movie-card';
 
 
         // Delete user 
-
     const handleDelete = () => {
         let token = localStorage.getItem('token');
         let user = localStorage.getItem('user');
@@ -81,6 +80,23 @@ import { MovieCard } from '../movie-card/movie-card';
             catch(error => console.error(error))
     }
 
+    const renderFavorites = () => {
+        console.log(movies)
+        return (
+            <Row className="justify-content-md-center">
+                {favoriteMovies.length === 0 ? (<h5>Add your favorite movie to your list</h5>) :(
+                    favoriteMovies.map((movieId, i) => (
+                        <Col md={6} lg={4}>
+                            <Movie 
+                            key={`${i}-${movieId}`}
+                            movie={movies.find(m => m._id == movieId)}
+                            />
+                        </Col>
+                    ))
+                )}
+            </Row>
+        )
+    }
 
     return (
         <Container id="profile-form">
