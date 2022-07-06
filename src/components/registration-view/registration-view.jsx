@@ -51,7 +51,7 @@ export function RegisterView() {
         const isReq = validate();
         if (isReq) {
             axios
-                .post("http://localhost:1234/users", {
+                .post("http://localhost:2222/users", {
                     Username: username,
                     Password: password,
                     Email: email,

@@ -47053,7 +47053,7 @@ function RegisterView() {
     const handleSubmit = (e)=>{
         e.preventDefault();
         const isReq = validate();
-        if (isReq) (0, _axiosDefault.default).post("http://localhost:1234/users", {
+        if (isReq) (0, _axiosDefault.default).post("http://localhost:2222/users", {
             Username: username,
             Password: password,
             Email: email,
