@@ -18,19 +18,49 @@ import { MovieCard } from '../movie-card/movie-card';
             getUser()
         }, [])
 
-
-    const getUser = () => {
-        axios.get(`htpps://localhost:1234/users/${currentUser}`, {
-            headers: { Authorization: `Bearer ${token}` }
-        })
-            .then(response => {
-                setUser(response.data);
-                setFavouriteMovies(response.data.FavouriteMovies)
+        const getUser = () => {
+            let token = localStorage.getItem('token');
+            let user = localStorage.getItem("user");
+            axios
+            .get(`https://localhost:1234/users/${user}`, {
+                headers: { Authorization: `Bearer ${token}` }
             })
-            .catch(error => console.error(error))
-    }
-
+            .then((response) => {
+                setUsername(response.data.Username)
+                setEmail(response.data.Email)
+                setFavoriteMovies(response.data.FavoriteMovies)
+                console.log(response.data)
+            })
+            .catch(e => {
+            console.log('Error')
+            });
+        }
    
+        // Update users info 
+        const updateUser = () => {
+            let token = localStorage.getItem('token');
+            let user = localStorage.getItem("user");
+            axios
+            .put(`https://localhost:1234/users/${user}`, {
+                Username: username,
+                Email: email, 
+                Birthday: birthday,
+                Password: password
+            },
+            {
+            headers: {
+                Authorization: 'Bearer ' + token
+            }})
+            .then((response) => {
+                alert('Your profile has been updated');
+                localStorage.setItem('user', response.data.Username),
+                console.log(response.data)
+            })
+            .catch(e => {
+                console.log('Error')
+            });
+        }
+
 
     const handleDelete = () => {
         axios.delete(`https://localhost:1234/users/${currentUser}`, {
