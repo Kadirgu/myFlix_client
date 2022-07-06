@@ -1,18 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import './profile-view.scss'
 import PropTypes from 'prop-types';
+import { Form, Button, Container, Col, Row, Modal } from 'react-bootstrap';
 import axios from 'axios';
+import { Link } from "react-router-dom";
+import { MovieCard } from '../movie-card/movie-card';
 
-import { Button, Col, Container, Row } from 'react-bootstrap';
+    export function ProfileView({ movies }) {
+        const [username, setUsername] = useState('');
+        const [password, setPassword] = useState('');
+        const [email, setEmail]       = useState('');
+        const [birthday, setBirthday] = useState('');
+        const [favoriteMovies, setFavoriteMovies] = useState([]);
+        const [show, setShow] = useState(false); // setting the state for the deleteUser modal 
 
-import './profile-view.scss';
+        useEffect(() => {
+            getUser()
+        }, [])
 
-export function ProfileView(props) {
-    const [user, setUser] = useState(props.user);
-    const [movies, setMovies] = useState(props.movies);
-    const [favouriteMovies, setFavouriteMovies] = useState([]);
-    
-    const currentUser = localStorage.getItem('user');
-    const token = localStorage.getItem('token');
 
     const getUser = () => {
         axios.get(`htpps://localhost:1234/users/${currentUser}`, {
@@ -25,9 +30,7 @@ export function ProfileView(props) {
             .catch(error => console.error(error))
     }
 
-    useEffect(() => {
-        getUser();
-    }, [])
+   
 
     const handleDelete = () => {
         axios.delete(`https://localhost:1234/users/${currentUser}`, {
