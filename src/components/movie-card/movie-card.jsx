@@ -3,16 +3,18 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import {Button, Card} from 'react-bootstrap';
 
-
 import { Link } from "react-router-dom";
 
+import './movie-card.scss';
+
+
 export class MovieCard extends React.Component {
-  
-      // Add Favorite movie 
-      addToFavs(movieId) {
+
+    // Add Favorite movie 
+    addToFavs(movieId) {
         const currentUser = localStorage.getItem('user');
         const token = localStorage.getItem('token');
-        axios.post(`https://localhost:2222/users/${currentUser}/movies/${movieId}`, 
+        axios.post(`https://localhost:50442/users/${currentUser}/movies/${movieId}`, 
         {},
         {
           headers: { Authorization: `Bearer ${token}`}
@@ -28,7 +30,7 @@ export class MovieCard extends React.Component {
     remFromFavs(movieId) {
         const currentUser = localStorage.getItem('user');
         const token = localStorage.getItem('token');
-        axios.delete(`https://localhost:2222/users/${currentUser}/movies/${movieId}`, 
+        axios.delete(`https://localhost:50442/users/${currentUser}/movies/${movieId}`, 
         {},
         {
           headers: { Authorization: `Bearer ${token}`}
@@ -40,38 +42,55 @@ export class MovieCard extends React.Component {
         catch(error => console.error(error))
     }
 
-  
-  render() {
-    const { movie } = this.props;
 
-    return (
-      <Card>
-        <Card.Img variant="top" src={movie.ImagePath} />
-        <Card.Body>
-          <Card.Title>{movie.Title}</Card.Title>
-          <Card.Text>{movie.Description}</Card.Text>
-          <Link to={`/movies/${movie._id}`}>
-            <Button variant="link">Open</Button>
-          </Link>
-        </Card.Body>
-      </Card>
-    );
+    render() {
+        const { movie } = this.props;
+
+        return (
+            <Card className='cards'>
+            <Link to={`/movies/${movie._id}`}>
+                <Card.Img className='cards-img' variant="top" src={movie.ImagePath} />
+            </Link>
+            <Card.Header>
+                <Card.Title className='cards-title'>{movie.Title}</Card.Title>
+                <div className="div-fav-buttons">
+                    <div className="div-button-add-favs">
+                        <Button 
+                            className="button-add-favs"
+                            variant="outline-success"                     
+                            onClick={() => this.addToFavs(movie._id) }>+ Favs                      
+                        </Button> 
+                    </div> 
+                    <div className="div-button-rem-favs">
+                        <Button 
+                            className="button-rem-favs"
+                            variant="outline-danger"                     
+                            onClick={() => this.remFromFavs(movie._id) }> - Favs                      
+                        </Button> 
+                    </div>
+                </div>                          
+            </Card.Header>
+            <Card.Body>                          
+                <Card.Text className="cards-description">{movie.Description.split(' ').slice(0, 14).join(' ') + ' [...]'}</Card.Text>
+            </Card.Body>
+            </Card>
+        );
+    }
   }
-}
 
-//setting up default values for the MovieCard properties
-//ensuring values are strings and required
+/*  -- specify how MovieCard's props should look: -- */
 MovieCard.propTypes = {
-  movie: PropTypes.shape({
-    Title: PropTypes.string.isRequired,
-    Description: PropTypes.string.isRequired,
-    Genre: PropTypes.shape({
-      Name: PropTypes.string,
-    }),
-    Director: PropTypes.shape({
-      Name: PropTypes.string,
-    }),
-  }).isRequired,
-
-  onMovieClick: PropTypes.func.isRequired,
+    movie: PropTypes.shape({
+        Title:              PropTypes.string.isRequired,
+        Description:        PropTypes.string.isRequired,
+        Genre: PropTypes.shape({
+            Name:           PropTypes.string.isRequired                  
+        }).isRequired,
+        Director: PropTypes.shape({
+            Name:           PropTypes.string.isRequired
+        }).isRequired,
+        Actors:             PropTypes.arrayOf(PropTypes.string).isRequired,
+        ImagePath:          PropTypes.string.isRequired,
+        Featured:           PropTypes.bool.isRequired
+    }).isRequired
 };

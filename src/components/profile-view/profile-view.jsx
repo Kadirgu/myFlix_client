@@ -4,20 +4,18 @@ import axios from 'axios';
 
 import { Button, Col, Container, Row } from 'react-bootstrap';
 
-import { FavouriteMoviesView } from './favourite-movie-view';
-import { UpdateView } from './update-view';
-
 import './profile-view.scss';
 
 export function ProfileView(props) {
     const [user, setUser] = useState(props.user);
     const [movies, setMovies] = useState(props.movies);
     const [favouriteMovies, setFavouriteMovies] = useState([]);
+    
     const currentUser = localStorage.getItem('user');
     const token = localStorage.getItem('token');
 
     const getUser = () => {
-        axios.get(`https://gentle-reef-88518.herokuapp.com/users/${currentUser}`, {
+        axios.get(`htpps://localhost:2222/users/${currentUser}`, {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then(response => {
@@ -32,7 +30,7 @@ export function ProfileView(props) {
     }, [])
 
     const handleDelete = () => {
-        axios.delete(`https://gentle-reef-88518.herokuapp.com/users/${currentUser}`, {
+        axios.delete(`https://localhost:2222/users/${currentUser}`, {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then(() => {

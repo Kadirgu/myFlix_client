@@ -6,6 +6,15 @@
 
 
 
+.poster {
+  height: auto;
+  opacity: 1 !important;
+  cursor: default !important;
+  max-width: 25rem !important;
+}
+
+
+
 .my-flix {
   color: #4682b4;
 }
