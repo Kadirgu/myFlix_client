@@ -125,35 +125,51 @@ import { MovieCard } from '../movie-card/movie-card';
         );
       }
     
-        return (
-        <Container id="profile-form">
-            <Row><h4>Your profile</h4></Row>
-            <Row>
-                <Col className="label">Username:</Col>
-                <Col className="value">{user.Username}</Col>
-            </Row>
-            <Row className="mt-3">
-                <Col className="label">Password:</Col>
-                <Col className="value">******</Col>
-            </Row>
-            <Row className="mt-3">
-                <Col className="label">Email:</Col>
-                <Col className="value">{user.Email}</Col>
-            </Row>
-            <Row className="mt-3">
-                <Col className="label">Birthday:</Col>
-                <Col className="value">{user.Birthday}</Col>
-            </Row>
-            <Row className="mt-5"><h4>Your favourite movies</h4></Row>
-            <Row className="mt-3">
-                <FavouriteMoviesView
-                    movies={movies}
-                    favouriteMovies={favouriteMovies}
-                    currentUser={currentUser}
-                    token={token} />
-            </Row>
-            <UpdateView user={user} />
-            <Button className="d-block mt-5" variant="danger" onClick={handleDelete}>Delete profile</Button>
-        </Container>
+      return (
+        <p>
+            <Container className="form-element">
+                
+            <h1>{username}'s Account</h1>
+            <Form>
+                <Form.Group className="mb-3" controlId="username">
+                    <Form.Label>Username:</Form.Label>
+                    <Form.Control onChange={(e) => setUsername(e.target.value)} value={username} type="text" placeholder="username" />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="email">
+                    <Form.Label>Email:</Form.Label>
+                    <Form.Control onChange={(e) => setEmail(e.target.value)} value={email} type="email" placeholder="Enter new email" />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="birthday">
+                    <Form.Label>Birthday:</Form.Label>
+                    <Form.Control onChange={(e) => setBirthday(e.target.value)} value={birthday} type="date" placeholder="birthday" />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="password">
+                    <Form.Label>Password:</Form.Label>
+                    <Form.Control onChange={(e) => setPassword(e.target.value)} type="password" value={password} placeholder="Password" />
+                </Form.Group>
+
+                <Button variant="warning" onClick={updateUser}>
+                    Update my profile
+                </Button>
+
+                {/* This button triggers a modal that's called below   */}
+                <Button className='deleteButton' variant="link" onClick={handleShow}>
+                    Delete my profile
+                </Button>
+            </Form>
+
+            {/* Calling the function that renders the modal to delete the users account */}
+            {cancelUserModal()}
+
+         
+            <Form className="form-element">
+                <h2>My Favorite Movies:</h2>
+
+                {/* Calling the function that renders the users favorite movies on the profile page */}
+                {renderFavorites()}
+            </Form>
+            
+            </Container>
+        </p>
     )
 }

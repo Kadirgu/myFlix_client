@@ -75,7 +75,10 @@
   max-width: 25rem !important;
 }
 
-
+.form-element {
+  margin-top: 60px;
+  display: inline-block;
+}
 
 
 
