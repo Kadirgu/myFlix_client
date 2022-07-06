@@ -98,7 +98,34 @@ import { MovieCard } from '../movie-card/movie-card';
         )
     }
 
-    return (
+      // Functions needed to open and close the modal (below) to delete a user 
+      const handleClose = () => setShow(false);
+      const handleShow = () => setShow(true);
+
+     // Function that contains the modal to delete a users account 
+      const cancelUserModal = () => {
+        return (
+            <>
+            <Modal style={{ background: "transparent"}} show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Delete your Account</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                   Are you sure you want to delete your account? 
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>Close</Button>
+                    <Link to={`/register`}>
+                        <Button variant="primary" onClick={deleteUser}>Delete</Button>
+                    </Link> 
+
+                </Modal.Footer>
+            </Modal>
+            </>
+        );
+      }
+    
+        return (
         <Container id="profile-form">
             <Row><h4>Your profile</h4></Row>
             <Row>
