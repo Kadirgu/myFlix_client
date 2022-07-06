@@ -39,7 +39,7 @@ import { MovieCard } from '../movie-card/movie-card';
         // Update users info 
         const updateUser = () => {
             let token = localStorage.getItem('token');
-            let user = localStorage.getItem("user");
+            let user = localStorage.getItem('user');
             axios
             .put(`https://localhost:1234/users/${user}`, {
                 Username: username,
@@ -62,17 +62,25 @@ import { MovieCard } from '../movie-card/movie-card';
         }
 
 
+        // Delete user 
+
     const handleDelete = () => {
-        axios.delete(`https://localhost:1234/users/${currentUser}`, {
-            headers: { Authorization: `Bearer ${token}` }
-        })
-            .then(() => {
-                alert(`The account ${user.Username} was successfully deleted.`)
-                localStorage.clear();
+        let token = localStorage.getItem('token');
+        let user = localStorage.getItem('user');
+        axios
+        .delete(`https://localhost:1234/users/${currentUser}`, {
+            headers: { 
+                Authorization: 'Bearer ' + token
+             }})
+             .then((response) => {
+                alert(`The account was successfully deleted.`)
+                localStorage.removeItem('user');
+                localStorage.removeItem('token');
                 window.open('/register', '_self');
             }).
             catch(error => console.error(error))
     }
+
 
     return (
         <Container id="profile-form">
