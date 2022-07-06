@@ -20,7 +20,25 @@
   display: flex;
 }
 
+.indiv-view {
+  margin: 5px;
+}
 
+.indiv-img {
+  height: 25em;
+  object-fit: contain;
+}
+
+.indiv-view-title {
+  height: 3em;
+  text-align: center;
+  font-size: 50px;
+  font-weight: 900;
+}
+
+.button {
+  margin: 0 20px;
+}
 
 .login-form {
   padding: 5rem 8rem;

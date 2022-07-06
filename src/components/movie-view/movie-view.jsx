@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import PropTypes from 'prop-types';
 
 import { Link } from 'react-router-dom';
@@ -9,15 +8,6 @@ import './movie-view.scss';
 
 /*MovieView: display details about a movie clicked by user*/
 export class MovieView extends React.Component {
-
-
-    componentDidMount() {
-        document.addEventListener("keypress", this.keypressCallback);
-    }
-
-    componentWillUnmount() {
-        document.removeEventListener("keypress", this.keypressCallback);
-    }
 
     render() {
         const { movie, onBackClick } = this.props;
