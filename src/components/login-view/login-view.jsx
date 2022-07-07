@@ -40,7 +40,7 @@ export function LoginView(props) {
         if (isReq) {
         /* Send a request to the server for authentication */
         axios
-            .post("http://localhost:1234/login", {
+            .post("http://gentle-reef-88518.herokuapp.com/login", {
                 Username: username,
                 Password: password,
             })

@@ -27075,7 +27075,7 @@ class MainView extends (0, _reactDefault.default).Component {
         };
     }
     getMovies(token) {
-        (0, _axiosDefault.default).get("https://localhost:1234/movies", {
+        (0, _axiosDefault.default).get("https://gentle-reef-88518.herokuapp.com/movies", {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -30489,7 +30489,7 @@ class MovieCard extends (0, _reactDefault.default).Component {
     addToFavs(movieId) {
         const currentUser = localStorage.getItem("user");
         const token = localStorage.getItem("token");
-        (0, _axiosDefault.default).post(`https://localhost:1234/users/${currentUser}/movies/${movieId}`, {}, {
+        (0, _axiosDefault.default).post(`https://gentle-reef-88518.herokuapp.com/users/${currentUser}/movies/${movieId}`, {}, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -30502,7 +30502,7 @@ class MovieCard extends (0, _reactDefault.default).Component {
     remFromFavs(movieId) {
         const currentUser = localStorage.getItem("user");
         const token = localStorage.getItem("token");
-        (0, _axiosDefault.default).delete(`https://localhost:1234/users/${currentUser}/movies/${movieId}`, {}, {
+        (0, _axiosDefault.default).delete(`https://gentle-reef-88518.herokuapp.com/users/${currentUser}/movies/${movieId}`, {}, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -46492,7 +46492,7 @@ function LoginView(props) {
     const handleSubmit = (e)=>{
         e.preventDefault();
         const isReq = validate();
-        if (isReq) /* Send a request to the server for authentication */ (0, _axiosDefault.default).post("http://localhost:1234/login", {
+        if (isReq) /* Send a request to the server for authentication */ (0, _axiosDefault.default).post("http://gentle-reef-88518.herokuapp.com/login", {
             Username: username,
             Password: password
         }).then((response)=>{
@@ -47055,7 +47055,7 @@ function RegisterView() {
     const handleSubmit = (e)=>{
         e.preventDefault();
         const isReq = validate();
-        if (isReq) (0, _axiosDefault.default).post("http://localhost:1234/login", {
+        if (isReq) (0, _axiosDefault.default).post("http://gentle-reef-88518.herokuapp.com/login", {
             Username: username,
             Password: password,
             Email: email,
@@ -47377,7 +47377,7 @@ function ProfileView({ movies  }) {
     const getUser = ()=>{
         let token = localStorage.getItem("token");
         let user = localStorage.getItem("user");
-        (0, _axiosDefault.default).get(`https://localhost:1234/users/${user}`, {
+        (0, _axiosDefault.default).get(`https://gentle-reef-88518.herokuapp.com/users/${user}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -47394,7 +47394,7 @@ function ProfileView({ movies  }) {
     const updateUser = ()=>{
         let token = localStorage.getItem("token");
         let user = localStorage.getItem("user");
-        (0, _axiosDefault.default).put(`https://localhost:1234/users/${user}`, {
+        (0, _axiosDefault.default).put(`https://gentle-reef-88518.herokuapp.com/users/${user}`, {
             Username: username,
             Email: email,
             Birthday: birthday,

@@ -29,7 +29,7 @@ export class MainView extends React.Component {
     }
 
     getMovies(token) {
-        axios.get('https://localhost:1234/movies', {
+        axios.get('https://gentle-reef-88518.herokuapp.com/movies', {
             headers: { Authorization: `Bearer ${token}`}
         })
         .then(response => {

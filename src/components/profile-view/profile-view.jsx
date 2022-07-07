@@ -22,7 +22,7 @@ import { MovieCard } from '../movie-card/movie-card';
             let token = localStorage.getItem('token');
             let user = localStorage.getItem("user");
             axios
-            .get(`https://localhost:1234/users/${user}`, {
+            .get(`https://gentle-reef-88518.herokuapp.com/users/${user}`, {
                 headers: { Authorization: `Bearer ${token}` }
             })
             .then((response) => {
@@ -41,7 +41,7 @@ import { MovieCard } from '../movie-card/movie-card';
             let token = localStorage.getItem('token');
             let user = localStorage.getItem('user');
             axios
-            .put(`https://localhost:1234/users/${user}`, {
+            .put(`https://gentle-reef-88518.herokuapp.com/users/${user}`, {
                 Username: username,
                 Email: email, 
                 Birthday: birthday,
