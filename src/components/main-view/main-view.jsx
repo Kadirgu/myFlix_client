@@ -69,7 +69,7 @@ export class MainView extends React.Component {
  
     render() {
         const { movies, user } = this.state;
-
+        console.log(movies)
         return (
             <Router>
                 <Menubar user={user} />

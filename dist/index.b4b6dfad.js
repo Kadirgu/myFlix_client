@@ -27108,6 +27108,7 @@ class MainView extends (0, _reactDefault.default).Component {
     }
     render() {
         const { movies , user: user1  } = this.state;
+        console.log(movies);
         return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.BrowserRouter), {
             children: [
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navBar.Menubar), {
@@ -30502,7 +30503,8 @@ class MovieCard extends (0, _reactDefault.default).Component {
     remFromFavs(movieId) {
         const currentUser = localStorage.getItem("user");
         const token = localStorage.getItem("token");
-        (0, _axiosDefault.default).delete(`https://gentle-reef-88518.herokuapp.com/users/${currentUser}/movies/${movieId}`, {}, {
+        console.log(currentUser, token);
+        (0, _axiosDefault.default).delete(`https://gentle-reef-88518.herokuapp.com/users/${currentUser}/movies/${movieId}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -46255,11 +46257,11 @@ var _movieViewScss = require("./movie-view.scss");
 class MovieView extends (0, _reactDefault.default).Component {
     render() {
         const { movie , onBackClick  } = this.props;
-        return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Container, {
+        return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Container), {
             fluid: true,
             className: "moviesContainer",
-            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Row, {
-                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Col, {
+            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
                     children: [
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                             className: "movie-poster",
@@ -47055,7 +47057,7 @@ function RegisterView() {
     const handleSubmit = (e)=>{
         e.preventDefault();
         const isReq = validate();
-        if (isReq) (0, _axiosDefault.default).post("http://gentle-reef-88518.herokuapp.com/login", {
+        if (isReq) (0, _axiosDefault.default).post("http://gentle-reef-88518.herokuapp.com/users", {
             Username: username,
             Password: password,
             Email: email,

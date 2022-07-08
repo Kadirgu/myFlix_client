@@ -51,7 +51,7 @@ export function RegisterView() {
         const isReq = validate();
         if (isReq) {
             axios
-                .post("http://gentle-reef-88518.herokuapp.com/login", {
+                .post("http://gentle-reef-88518.herokuapp.com/users", {
                     Username: username,
                     Password: password,
                     Email: email,

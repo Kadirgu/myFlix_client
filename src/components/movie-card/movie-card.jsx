@@ -29,8 +29,8 @@ export class MovieCard extends React.Component {
     remFromFavs(movieId) {
         const currentUser = localStorage.getItem('user');
         const token = localStorage.getItem('token');
+        console.log(currentUser, token)
         axios.delete(`https://gentle-reef-88518.herokuapp.com/users/${currentUser}/movies/${movieId}`, 
-        {},
         {
           headers: { Authorization: `Bearer ${token}`}
         })
