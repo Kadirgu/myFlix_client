@@ -116,7 +116,7 @@ import { MovieCard } from '../movie-card/movie-card';
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>Close</Button>
                     <Link to={`/register`}>
-                        <Button variant="primary" onClick={deleteUser}>Delete</Button>
+                        <Button variant="primary" onClick={handleShow}>Delete</Button>
                     </Link> 
 
                 </Modal.Footer>
@@ -153,7 +153,7 @@ import { MovieCard } from '../movie-card/movie-card';
                 </Button>
 
                 {/* This button triggers a modal that's called below   */}
-                <Button className='deleteButton' variant="link" onClick={handleShow}>
+                <Button className='deleteButton' variant="link" onClick={handleDelete}>
                     Delete my profile
                 </Button>
             </Form>

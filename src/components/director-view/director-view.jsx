@@ -11,7 +11,7 @@ import './director-view.scss';
 
     if (director.Death===undefined) return (
         <Container className="director-view">
-        return <Row>
+         <Row>
             <Col className="left-col">Director: </Col>
             <Col className="right-col">{director.Name + ' (born ' + director.Birth + ')'}</Col>
         </Row>
@@ -53,7 +53,7 @@ import './director-view.scss';
                     </Col>
                 </Row>          
         </Container>
-        )
+    )
 
 
     }

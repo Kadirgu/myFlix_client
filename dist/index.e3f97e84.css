@@ -1,6 +1,11 @@
 .cards {
-  height: 520px;
+  height: 540px;
   margin: 30px 5px;
+}
+
+.cards:hover {
+  background-color: #fafbff;
+  box-shadow: 0 0 1px 1px #dcdcdc;
 }
 
 .cards-img {
@@ -8,20 +13,51 @@
   object-fit: contain;
 }
 
+.cards-img:hover {
+  box-shadow: 0 0 5px 1px #7f7f80;
+}
+
 .cards-title {
   height: 50px;
-  text-align: center;
+  text-align: left;
   font-weight: 700;
 }
 
-.div-fav-buttons {
-  justify-content: space-around;
-  align-items: center;
-  display: flex;
+.div-button-add-favs {
+  text-align: right;
+}
+
+.text-link:hover {
+  font-weight: 500;
+}
+
+@media (max-width: 575.98px) {
+  .cards {
+    height: 480px;
+  }
+}
+
+@media (min-width: 575.99px) and (max-width: 767.99px) {
+  .cards {
+    height: 540px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .cards {
+    height: 580px;
+  }
+}
+
+@media (min-width: 991.99px) {
+  .cards {
+    height: 530px;
+  }
 }
 
 .indiv-view {
-  margin: 5px;
+  text-align: justify;
+  margin: 3vw 0;
 }
 
 .indiv-img {
@@ -31,17 +67,24 @@
 
 .indiv-view-title {
   height: 3em;
-  text-align: center;
   font-size: 50px;
   font-weight: 900;
 }
 
 .button {
-  margin: 0 20px;
+  margin: 10px 15px 0 0;
+}
+
+.button-add-favs:active {
+  transform: scale(1.15);
 }
 
 .login-form {
   padding: 5rem 8rem;
+}
+
+.director-view {
+  text-align: justify;
 }
 
 .label {
@@ -58,6 +101,10 @@
   font-size: 18px;
 }
 
+.genre-view {
+  text-align: justify;
+}
+
 .left-col {
   text-align: right;
   font-size: 18px;
@@ -66,6 +113,10 @@
 
 .right-col {
   font-size: 18px;
+}
+
+.registration-form {
+  padding: 5rem;
 }
 
 

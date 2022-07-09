@@ -1,20 +1,25 @@
 
-.indiv-view {    
-    margin: 5px; 
+.indiv-view {  
+    margin: 3vw 0; 
+    text-align: justify;
 }
 
 .indiv-img {   
     height: 25em;
-    object-fit: contain;
+    object-fit: contain;    
 }
 
 .indiv-view-title {  
     height: 3em;
     font-size: 50px;
-    font-weight: 900;
-    text-align: center; 
+    font-weight: 900;    
 }
 
 .button{
-    margin: 0 20px;
+    margin: 10px 15px 0 0;
 }
+
+.button-add-favs:active{
+    transform: scale(1.15);    
+}
+
