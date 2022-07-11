@@ -79,6 +79,10 @@
   transform: scale(1.15);
 }
 
+.movie-poster img {
+  height: 600px;
+}
+
 .login-form {
   padding: 5rem 8rem;
 }
