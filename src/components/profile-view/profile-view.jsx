@@ -61,7 +61,6 @@ import { MovieCard } from '../movie-card/movie-card';
             });
         }
 
-
         // Delete user 
     const handleDelete = () => {
         let token = localStorage.getItem('token');

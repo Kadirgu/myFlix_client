@@ -10,22 +10,29 @@ export class GenreView extends React.Component {
         const { genre, onBackClick } = this.props;
 
         return (
-            <Container>
+            <Container className="mt-3 director-view">
                 <Row>
-                    <Col className="label">Genre: </Col>
-                    <Col className="value">{genre.Genre.Name}</Col>
+                    <Col className="left-col">Genre: </Col>
+                    <Col className="right-col">{genre.Name}</Col>
                 </Row>
                 <Row className="mt-3">
-                    <Col className="label">Description: </Col>
-                    <Col className="value">{genre.Genre.Description}</Col>
+                    <Col className="left-col">Description: </Col>
+                    <Col className="right-col">{genre.Description}</Col>
                 </Row>
-                <Button className="d-block mt-3" onClick={() => { onBackClick(null); }} 
-                variant="warning">Back
-                </Button>
+                <Row className="mt-3">
+                    <Col className="left-col"></Col>
+                    <Col className="right-col">
+                        <Button 
+                            className="d-block mt-3" 
+                            onClick={() => { onBackClick(null); }} 
+                            variant="warning">Back
+                        </Button>
+                    </Col>
+                </Row>            
             </Container>
-        )
+            )
+        }
     }
-}
 
 GenreView.propTypes = {
     genre: PropTypes.shape({
