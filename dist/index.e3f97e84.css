@@ -87,6 +87,12 @@
   padding: 5rem 8rem;
 }
 
+.registration-form {
+  padding: 5rem;
+}
+
+
+
 .director-view {
   text-align: justify;
 }
@@ -118,12 +124,6 @@
 .right-col {
   font-size: 18px;
 }
-
-.registration-form {
-  padding: 5rem;
-}
-
-
 
 .form-element {
   margin-top: 60px;
