@@ -41,7 +41,6 @@ export class MovieCard extends React.Component {
         catch(error => console.error(error))
     }
 
-
     render() {
         const { movie } = this.props;
 
@@ -57,7 +56,7 @@ export class MovieCard extends React.Component {
                         <Button 
                             className="button-add-favs"
                             variant="outline-success"                     
-                            onClick={() => this.addToFavs(movie._id) }>+ Favs                      
+                            onClick={() => this.addToFavs(movie._id) }> + Favs                      
                         </Button> 
                     </div> 
                     <div className="div-button-rem-favs">
