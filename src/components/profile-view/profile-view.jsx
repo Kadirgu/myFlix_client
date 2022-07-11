@@ -87,7 +87,7 @@ import { MovieCard } from '../movie-card/movie-card';
                 {favoriteMovies.length === 0 ? (<h5>Add your favorite movie to your list</h5>) :(
                     favoriteMovies.map((movieId, i) => (
                         <Col md={6} lg={4}>
-                            <Movie 
+                            <MovieCard 
                             key={`${i}-${movieId}`}
                             movie={movies.find(m => m._id == movieId)}
                             />
