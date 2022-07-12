@@ -113,7 +113,7 @@ export class MainView extends React.Component {
                                     return <Col md={8}>
                                         <ProfileView movies={movies} user={user} />
                                            </Col>
-                        }} 
+                        }}
                     />
 
                     <Route
