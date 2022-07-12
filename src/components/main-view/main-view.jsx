@@ -103,6 +103,18 @@ export class MainView extends React.Component {
                             );
                         }}
                     />
+                    
+                    <Route 
+                        exact path='/users/:user' 
+                        render={({ match, history }) => {
+                            if (!user) 
+                            return 
+                                <Redirect to='/' />
+                                    return <Col md={8}>
+                                        <ProfileView movies={movies} user={user} />
+                                           </Col>
+                        }} 
+                    />
 
                     <Route
                         path='/movies/:movieId'
