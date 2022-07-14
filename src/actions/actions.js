@@ -1,15 +1,5 @@
 export const SET_MOVIES = 'SET_MOVIES';
 export const SET_FILTER = 'SET_FILTER';
-<<<<<<< Updated upstream
-
-export function setMovies(value) {
-    return { type: SET_MOVIES, value };
-}
-
-export function setFilter(value) {
-    return { type: SET_MOVIES, value };
-}
-=======
 export const SET_USER = 'SET_USER';
 export const ADD_FAVMOVIE = 'ADD_FAVMOVIE';
 export const REM_FAVMOVIE = 'REM_FAVMOVIE';
@@ -49,4 +39,3 @@ export function remFavMovie(value) {
         value
     };
 }
->>>>>>> Stashed changes
