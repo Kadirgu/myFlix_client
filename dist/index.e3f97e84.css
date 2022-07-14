@@ -10,10 +10,113 @@
   font-weight: 300;
 }
 
+<<<<<<< Updated upstream
+=======
+.cards-img {
+  height: 300px;
+  object-fit: contain;
+}
+
+.cards-img:hover {
+  box-shadow: 0 0 5px 1px #7f7f80;
+}
+
+.cards-title {
+  height: 50px;
+  text-align: left;
+  font-weight: 700;
+}
+
+.div-button-add-favs {
+  text-align: right;
+}
+
+.text-link:hover {
+  font-weight: 500;
+}
+
+@media (max-width: 575.98px) {
+  .cards {
+    height: 480px;
+  }
+}
+
+@media (min-width: 575.99px) and (max-width: 767.99px) {
+  .cards {
+    height: 540px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .cards {
+    height: 580px;
+  }
+}
+
+@media (min-width: 991.99px) {
+  .cards {
+    height: 530px;
+  }
+}
+
+
+
+.login-form {
+  padding: 5rem 8rem;
+}
+
+.registration-form {
+  padding: 5rem;
+}
+
+.indiv-view {
+  text-align: justify;
+  margin: 3vw 0;
+}
+
+.indiv-img {
+  height: 25em;
+  object-fit: contain;
+}
+
+.indiv-view-title {
+  height: 3em;
+  font-size: 50px;
+  font-weight: 900;
+}
+
+.button {
+  margin: 10px 15px 0 0;
+}
+
+.button-add-favs:active {
+  transform: scale(1.15);
+}
+
+.movie-poster img {
+  height: 600px;
+}
+
+.director-view {
+  text-align: justify;
+}
+
+.label {
+  font-weight: bold;
+}
+>>>>>>> Stashed changes
 
 
 .my-flix {
-  color: #4682b4;
+  color: #530499;
+}
+
+.bg-col {
+  background-color: #2c35e80d;
+}
+
+.lining {
+  box-shadow: 0 0 3px 1px #4b4b4a4d;
 }
 
 /*# sourceMappingURL=index.e3f97e84.css.map */

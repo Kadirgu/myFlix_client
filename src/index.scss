@@ -1,5 +1,15 @@
-$color: steelblue;
+$title-color: rgb(83, 4, 153);
+$background-color:rgba(44, 53, 232, 0.05);
+$box-shadow-color: rgba(75, 75, 74, 0.3);
 
 .my-flix {
-    color: $color;
+  color: $title-color;
+}
+
+.bg-col{
+    background-color: $background-color;
+}
+
+.lining{
+    box-shadow: 0 0 3px 1px $box-shadow-color;
 }

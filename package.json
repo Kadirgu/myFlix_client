@@ -26,15 +26,23 @@
     "prop-types": "^15.8.1",
     "react": "^16.8.3",
     "react-bootstrap": "^2.4.0",
+<<<<<<< Updated upstream
     "react-dom": "^18.1.0",
     "react-redux": "^8.0.2",
     "react-router-dom": "^5.3.0",
     "redux": "^4.2.0"
+=======
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.0.2",
+    "react-router-dom": "^5.3.0",
+    "redux": "^4.2.0",
+    "redux-devtools-extension": "^2.13.9"
+>>>>>>> Stashed changes
   },
   "devDependencies": {
-    "@parcel/transformer-sass": "^2.6.0",
+    "@parcel/transformer-sass": "^2.6.2",
     "buffer": "^6.0.3",
-    "parcel": "^2.6.0",
+    "parcel": "^2.6.2",
     "process": "^0.11.10"
   }
 }

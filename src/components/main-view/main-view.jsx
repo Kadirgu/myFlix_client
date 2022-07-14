@@ -1,72 +1,199 @@
-import PropTypes from "prop-types";
-import React from "react";
-import { Button, Col, Container, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
 
-export class MovieView extends React.Component {
-    keypressCallback(event) {
-        console.log(event.key);
+import React from 'react';
+import axios from 'axios';
+import { connect } from 'react-redux';
+import {Redirect}  from 'react-router';
+
+import { BrowserRouter as Router, Route, Routes, Redirect } from 'react-router-dom';
+
+import { 
+    setMovies, 
+    setUser
+    } from '../../actions/actions';
+
+import MoviesList from '../movies-list/movies-list';
+
+import { MenuBar } from '../nav-bar/nav-bar';
+import { RegistrationView } from '../registration-view/registration-view';
+import { MovieView } from '../movie-view/movie-view';
+import { DirectorView } from '../director-view/director-view';
+import { GenreView } from '../genre-view/genre-view'; 
+import ProfileView from '../profile-view/profile-view';
+import { Container, Col, Row } from 'react-bootstrap';
+import './main-view.scss';
+
+class MainView extends React.Component {
+        constructor() {
+            super();
+            this.state= {
+                movies: [],
+                user: null,
+                fullUser: {}
+            };
+        }
+    
+        componentDidMount(){
+            const accessToken = localStorage.getItem('token');
+            const user = localStorage.getItem('user');
+            console.log(accessToken)
+            if (accessToken !== null) {
+                console.log('before axios')
+                axios.get(`https://gentle-reef-88518.herokuapp.com/users/${user}`, {
+                    headers: { Authorization: `Bearer ${accessToken}`}
+                })
+                .then(res => {
+                    console.log(res)
+                    const fullUser = res.data;
+                    this.setState({
+                        fullUser: fullUser,
+                        user: localStorage.getItem('user')
+                    })
+                    this.getMovies(accessToken);
+                })
+                .catch(function (error) {
+                    console.log(error)
+                });
+            }
+        }
+    
+        //When a movie is clicked, function is invoked and updates
+        //the state of the selectedMovie property to that movie
+        setSelectedMovie(movie) {
+            this.setState({
+                selectedMovie: movie
+            });
+        }
+    
+        getMovies(token) {
+            console.log('get movies', token)
+            axios.get('https://gentle-reef-88518.herokuapp.com/movies', {
+                headers: { Authorization:`Bearer ${token}`}
+            })
+            .then(response => {
+                // this.props.setMovies(response.data);
+                //Assign result of state
+                this.setState({
+                    movies: response.data
+                });
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        }
+    
+        //On succesful login, function updates the user property in 
+        //state to that user
+        onLoggedIn(authData) {
+            console.log(authData);
+            this.setState({
+                user: authData.user.Username
+            });
+    
+            localStorage.setItem('token', authData.token);
+            localStorage.setItem('user', authData.user.Username);
+            this.getMovies(authData.token);
+        }
+    
+        //User logout
+        onLoggedOut() {
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            this.setState({
+                user: null
+            });
+        }
+    
+        render() {
+            if (!this.state) return <>loading...</>
+            const { movies, user } = this.state;
+            // const { movies, user } = this.props;
+            console.log('logged in: ', user);
+    
+
+            return (
+                <Router>
+                    <MenuBar user={user} />
+                    <Container >
+                        <Row className="main-view justify-content-md-center">
+                        
+                            <Route exact path="/" render={() => {
+                                if (!user && !localStorage.getItem('user')) return <Col>
+                                    <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+                                </Col>
+                                return <MoviesList movies={movies}/>
+                            }} />
+                        
+                            <Route path="/register" render={() => {
+                                if(user) {
+                                    <Redirect to="/" />
+                                }
+                                return (
+                                    <Col lg={8} md={8}>
+                                        <RegistrationView />
+                                    </Col>
+                                )
+                            }} />
+                    
+                            <Route path="/movies/:movieId" render={({ match, history }) => {
+                                if (!user) return <Col>
+                                    <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+                                </Col>
+    
+                                return <Col md={8}>
+                                    <MovieView user={this.state?.fullUser} movie={movies.find(m => m._id === match.params.movieId)} onBackClick={() => history.goBack()} />
+                                </Col>
+                            }} />
+                    
+                            <Route path="/directors/:name" render={( { match, history }) => {
+    
+                                if (!user) return <Col><LoginView onLoggedIn={user => this.onLoggedIn(user)} /></Col>
+    
+                                return ( 
+                                    <Col md={8} >
+                                        <DirectorView director={movies.find(m => m.Director.Name === match.params.name)?.Director} onBackClick={() => history.goBack()} />
+                                    </Col>
+                                )
+                            }} />
+                        
+                            <Route path="/genres/:name" render={({ match, history }) => {
+                                if (!user) return <Col>
+                                    <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+                                </Col>
+                                return <Col md={8}>
+                                    <GenreView genre={movies.find(m => m.Genre.Name === match.params.name)?.Genre} onBackClick={() => history.goBack()} />
+                                </Col>
+                            }} />
+                        
+                            <Route path={`/users/${user}`} render={({ history }) => {
+                                return <Col>
+                                    <ProfileView movies={movies} user={user} onBackClick={() => history.goBack()} />
+                                </Col>
+                            }} />
+                            
+                        </Row>
+                    </Container>
+                </Router>
+            );
+        }
     }
 
-    componentDidMount() {
-        document.addEventListener("keypress", this.keypressCallback);
-    }
 
-    componentWillUnmount() {
-        document.removeEventListener("keypress", this.keypressCallback);
-    }
-
-    render() {
-        const { movie, onBackClick } = this.props;
-
-        return (
-            <Container fluid className='moviesContainer'>
-                <Row>
-                    <Col>
-                        <div className='movie-poster'>
-                            <img src={movie.ImagePath} />
-                        </div>
-                        <div className='movie-title'>
-                            <span className='label'>Title: </span>
-                            <span className='value'>{movie.Title}</span>
-                        </div>
-                        <div className='movie-description'>
-                            <span className='label'>Description: </span>
-                            <span className='value'>{movie.Description}</span>
-                        </div>
-                        <div className='movie-genre'>
-                            <span className='label'>Genre: </span>
-                            <Link to={`/genres/${movie.Genre.Name}`}>
-                                <Button variant='link'>{movie.Genre.Name}</Button>
-                            </Link>
-                        </div>
-                        <div className='movie-director'>
-                            <span className='label'>Director: </span>
-                            <Link to={`/directors/${movie.Director.Name}`}>
-                                <Button variant='link'>{movie.Director.Name}</Button>
-                            </Link>
-                        </div>
-                        <Button variant='outline-secondary' onClick={() => onBackClick()}>
-                            Back
-                        </Button>
-                    </Col>
-                </Row>
-            </Container>
-        );
+let mapStateToProps = store => {
+    return { 
+        movies: store.movies,
+        user: store.user
     }
 }
 
-MovieView.propTypes = {
-    movie: PropTypes.shape({
-        Title: PropTypes.string.isRequired,
-        Description: PropTypes.string.isRequired,
-        Genre: PropTypes.shape({
-            Name: PropTypes.string,
-        }),
-        Director: PropTypes.shape({
-            Name: PropTypes.string,
-        }),
-    }).isRequired,
+const mapDispatchToProps = dispatch => {
+    return {
+        setUser: (user) => {
+            dispatch(setUser(user))
+        },
+        setMovies: (movies) => {
+            dispatch(setMovies(movies))
+        }
+    }
+}
 
-    onBackClick: PropTypes.func.isRequired,
-};
+export default connect(mapStateToProps, mapDispatchToProps)(MainView);
