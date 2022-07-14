@@ -4,9 +4,6 @@ import axios from 'axios';
 
 import { Button, Col, Container, Row } from 'react-bootstrap';
 
-import { FavouriteMoviesView } from './favourite-movie-view';
-import { UpdateView } from './update-view';
-
 import './profile-view.scss';
 
 export function ProfileView(props) {
