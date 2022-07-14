@@ -1,55 +1,68 @@
-import React from 'react';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import React, { setState } from 'react';
+import axios from 'axios';
+import {Button, Card} from 'react-bootstrap';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import './movie-view.scss';
 
 export class MovieView extends React.Component {
 
-    keypressCallback(event) {
-        console.log(event.key);
+    addToFavs = (event) => {
+        event.preventDefault()
+    
+        const username = localStorage.getItem("user");
+        const token = localStorage.getItem("token");
+    
+        axios
+        .post(
+            `https://gentle-reef-88518.herokuapp.com/users/${username}/movies/${this.props.movie._id}`,
+            {},
+            {headers: { Authorization: `Bearer ${token}` }})
+        .then(() => {
+            alert(`${this.props.movie.Title} was added to your favorites list`);
+            })
+        .catch((err) => {
+            console.log(err);
+            }
+        );
     }
 
-    componentDidMount() {
-        document.addEventListener('keypress', this.keypressCallback);
-    }
-
-    componentWillUnmount() {
-        document.removeEventListener('keypress', this.keypressCallback);
-    }
-
-    render() {
+    render () {
+        if (!this.props?.user || !this.props.movie) return <div />
         const { movie, onBackClick } = this.props;
+        console.log('single movie view: ', movie)
 
         return (
-            <Row className="main-view justify-content-md-center">
-                {selectedMovie
-                    ? (
-                        <Col md={8}>
-                            <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
-                        </Col>
-                    )
-                    : movies.map(movie => (
-                        <Col md={3}>
-                            <MovieCard key={movie._id} movie={movie} onMovieClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
-                        </Col>
-                    ))
-                }
-            </Row>
+            <Card className="indiv-view  movie-view">
+            <Card.Img className="bg-col indiv-img" variant="top" src={movie.ImagePath}  />
+            <Card.Header>
+                <Card.Title className="indiv-title">{movie.Title}</Card.Title>
+            </Card.Header>
+            <Card.Body className="bg-col">            
+                <Card.Text>{movie.Description}</Card.Text>
+                <Card.Text><strong>Director: </strong>{movie.Director.Name}</Card.Text>
+                <Card.Text><strong>Starring: </strong>{movie.Actors.join(', ')}</Card.Text>
+                <Route path=".movies/:movieId" render={({ match, history }) => {
+                                    return <Col md={8}>
+                                        <MovieView movie={movie.find(m => m._id === match.params.movieId)} onBackClick={() => history.goBack()} />
+                                    </Col>
+                                }} />
+                <Link to={`/directors/${movie.Director.Name}`}>
+                    <Button className="button" variant="secondary">Director</Button>
+                </Link>
+                <Link to={`/genres/${movie.Genre.Name}`}>
+                    <Button className="button" variant="secondary">Genre</Button>
+                </Link>
+                <Button className="button" onClick={() => { onBackClick(null); }} >Back</Button>               
+                <Button 
+                    className="button button-add-favs"
+                    variant="outline-secondary"
+                    title="Add to My Favorites" 
+                                       
+                    onClick={(event) => this.addToFavs(event) }> &#x2764;                      
+                </Button> 
+                                   
+            </Card.Body>           
+            </Card>
         );
-
     }
 }
-
-MovieView.propTypes = {
-    movie: PropTypes.shape({
-        Title: PropTypes.string.isRequired,
-        Description: PropTypes.string.isRequired,
-        Genre: PropTypes.shape({
-            Name: PropTypes.string,
-        }),
-        Director: PropTypes.shape({
-            Name: PropTypes.string,
-        }),
-    }).isRequired,
-
-    onBackClick: PropTypes.func.isRequired,
-};
