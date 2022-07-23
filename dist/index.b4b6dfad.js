@@ -2914,7 +2914,7 @@ var _mainView = require("./components/main-view/main-view");
 var _mainViewDefault = parcelHelpers.interopDefault(_mainView);
 var _indexScss = require("./index.scss");
 //Store
-const store = (0, _redux.legacy_createStore)((0, _reducersDefault.default), (0, _reduxDevtoolsExtension.devToolsEnhancer)());
+const store = (0, _redux.createStore)((0, _reducersDefault.default), (0, _reduxDevtoolsExtension.devToolsEnhancer)());
 //Main component
 class MyFlixApplication extends (0, _reactDefault.default).Component {
     render() {
@@ -2922,21 +2922,21 @@ class MyFlixApplication extends (0, _reactDefault.default).Component {
             store: store,
             __source: {
                 fileName: "src/index.jsx",
-                lineNumber: 19,
+                lineNumber: 20,
                 columnNumber: 13
             },
             __self: this
         }, /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Container), {
             __source: {
                 fileName: "src/index.jsx",
-                lineNumber: 20,
+                lineNumber: 21,
                 columnNumber: 17
             },
             __self: this
         }, /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _mainViewDefault.default), {
             __source: {
                 fileName: "src/index.jsx",
-                lineNumber: 21,
+                lineNumber: 22,
                 columnNumber: 21
             },
             __self: this
@@ -28960,7 +28960,7 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","axios":"jo6P5","react-redux":"bdVon","react-router":"dvHa0","react-router-dom":"cHIiW","../../actions/actions":"biFwH","../movies-list/movies-list":"bPxKK","../registration-view/registration-view":"3U8r7","../movie-view/movie-view":"ggaUx","../director-view/director-view":"9tpci","../genre-view/genre-view":"4tuA0","../profile-view/profile-view":"2vVqf","react-bootstrap":"3AD9A","./main-view.scss":"eBaMl","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../login-view/login-view":"9YtA0","../nav-bar/nav-bar":"04Psr"}],"jo6P5":[function(require,module,exports) {
+},{"react":"21dqq","axios":"jo6P5","react-redux":"bdVon","react-router":"dvHa0","react-router-dom":"cHIiW","../../actions/actions":"biFwH","../movies-list/movies-list":"bPxKK","../nav-bar/nav-bar":"04Psr","../login-view/login-view":"9YtA0","../registration-view/registration-view":"3U8r7","../movie-view/movie-view":"ggaUx","../director-view/director-view":"9tpci","../genre-view/genre-view":"4tuA0","../profile-view/profile-view":"2vVqf","react-bootstrap":"3AD9A","./main-view.scss":"eBaMl","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"jo6P5":[function(require,module,exports) {
 module.exports = require("./lib/axios");
 
 },{"./lib/axios":"63MyY"}],"63MyY":[function(require,module,exports) {
@@ -36834,7 +36834,7 @@ class MovieCard extends (0, _reactDefault.default).Component {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","prop-types":"7wKI2","react-router-dom":"cHIiW","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-bootstrap":"3AD9A","./movie-card.scss":"d6HH4"}],"3AD9A":[function(require,module,exports) {
+},{"react":"21dqq","prop-types":"7wKI2","react-bootstrap":"3AD9A","react-router-dom":"cHIiW","./movie-card.scss":"d6HH4","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"3AD9A":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Accordion", ()=>(0, _accordionDefault.default));
@@ -41377,7 +41377,322 @@ as: Component = "div" , ...props }, ref)=>{
 Row.displayName = "Row";
 exports.default = Row;
 
-},{"classnames":"jocGM","react":"21dqq","./ThemeProvider":"dVixI","react/jsx-runtime":"6AEwr","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"d6HH4":[function() {},{}],"3U8r7":[function(require,module,exports) {
+},{"classnames":"jocGM","react":"21dqq","./ThemeProvider":"dVixI","react/jsx-runtime":"6AEwr","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"d6HH4":[function() {},{}],"04Psr":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$9119 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$9119.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "MenuBar", ()=>MenuBar);
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _reactBootstrap = require("react-bootstrap");
+var _reactRedux = require("react-redux");
+var _actions = require("../../actions/actions");
+var _navBarScss = require("./nav-bar.scss");
+function MenuBar({ user  }) {
+    const onLoggedOut = ()=>{
+        localStorage.clear();
+        window.open("/", "_self");
+    };
+    const isAuth = ()=>{
+        if (typeof window == "undefined") return false;
+        if (localStorage.getItem("token")) return localStorage.getItem("token");
+        else return false;
+    };
+    return /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Navbar), {
+        className: "main-nav",
+        sticky: "top",
+        bg: "dark",
+        expand: "sm",
+        variant: "dark",
+        __source: {
+            fileName: "src/components/nav-bar/nav-bar.jsx",
+            lineNumber: 27,
+            columnNumber: 9
+        },
+        __self: this
+    }, /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Container), {
+        __source: {
+            fileName: "src/components/nav-bar/nav-bar.jsx",
+            lineNumber: 28,
+            columnNumber: 13
+        },
+        __self: this
+    }, /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Navbar).Brand, {
+        className: "navbar-logo",
+        href: "/",
+        __source: {
+            fileName: "src/components/nav-bar/nav-bar.jsx",
+            lineNumber: 29,
+            columnNumber: 17
+        },
+        __self: this
+    }, "myFlix"), /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Navbar).Toggle, {
+        "aria-controls": "responsive-navbar-nav",
+        __source: {
+            fileName: "src/components/nav-bar/nav-bar.jsx",
+            lineNumber: 30,
+            columnNumber: 17
+        },
+        __self: this
+    }), /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Navbar).Collapse, {
+        id: "responsive-navbar-nav",
+        __source: {
+            fileName: "src/components/nav-bar/nav-bar.jsx",
+            lineNumber: 31,
+            columnNumber: 17
+        },
+        __self: this
+    }, /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Nav), {
+        className: "ml-auto",
+        __source: {
+            fileName: "src/components/nav-bar/nav-bar.jsx",
+            lineNumber: 32,
+            columnNumber: 21
+        },
+        __self: this
+    }, isAuth() && /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Nav).Link, {
+        href: `/users/${user}`,
+        __source: {
+            fileName: "src/components/nav-bar/nav-bar.jsx",
+            lineNumber: 34,
+            columnNumber: 25
+        },
+        __self: this
+    }, user), isAuth() && /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Button), {
+        variant: "link",
+        onClick: ()=>{
+            onLoggedOut();
+        },
+        __source: {
+            fileName: "src/components/nav-bar/nav-bar.jsx",
+            lineNumber: 37,
+            columnNumber: 25
+        },
+        __self: this
+    }, "Logout"), !isAuth() && /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Nav).Link, {
+        href: "/",
+        __source: {
+            fileName: "src/components/nav-bar/nav-bar.jsx",
+            lineNumber: 40,
+            columnNumber: 25
+        },
+        __self: this
+    }, "Login"), !isAuth() && /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Nav).Link, {
+        href: "/register",
+        __source: {
+            fileName: "src/components/nav-bar/nav-bar.jsx",
+            lineNumber: 43,
+            columnNumber: 25
+        },
+        __self: this
+    }, "Register")))));
+}
+_c = MenuBar;
+let mapStateToProps = (state)=>{
+    return {
+        movies: state.movies,
+        user: state.user
+    };
+};
+exports.default = (0, _reactRedux.connect)(mapStateToProps, {
+    setUser: (0, _actions.setUser)
+})(MenuBar);
+var _c;
+$RefreshReg$(_c, "MenuBar");
+
+  $parcel$ReactRefreshHelpers$9119.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react":"21dqq","react-bootstrap":"3AD9A","./nav-bar.scss":"aUy9V","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-redux":"bdVon","../../actions/actions":"biFwH"}],"aUy9V":[function() {},{}],"9YtA0":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$9fee = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$9fee.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "LoginView", ()=>LoginView);
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _reactBootstrap = require("react-bootstrap");
+var _reactRouterDom = require("react-router-dom");
+var _axios = require("axios");
+var _axiosDefault = parcelHelpers.interopDefault(_axios);
+var _propTypes = require("prop-types");
+var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
+var _reactRedux = require("react-redux");
+var _actions = require("../../actions/actions");
+var _loginViewScss = require("./login-view.scss");
+var _s = $RefreshSig$();
+function LoginView(props) {
+    _s();
+    const [username, setUsername] = (0, _react.useState)("");
+    const [password, setPassword] = (0, _react.useState)("");
+    const [usernameErr, setUsernameErr] = (0, _react.useState)("");
+    const [passwordErr, setPasswordErr] = (0, _react.useState)("");
+    const validate = ()=>{
+        let isReq = true;
+        if (!username) {
+            setUsernameErr("Username required");
+            isReq = false;
+        } else if (username.length < 5) {
+            setUsernameErr("Username must be at least 5 characters long");
+            isReq = false;
+        }
+        if (!password) {
+            setPasswordErr("Password Required");
+            isReq = false;
+        } else if (password.length < 6) {
+            setPasswordErr("Password must be at least 6 characters long");
+            isReq = false;
+        }
+        return isReq;
+    };
+    //Requests server for authentication
+    //then calls props.onLoggedIn(username)
+    const handleSubmit = (e)=>{
+        e.preventDefault();
+        const isReq = validate();
+        if (isReq) (0, _axiosDefault.default).post("https://gentle-reef-88518.herokuapp.com/login", {
+            Username: username,
+            Password: password
+        }).then((response)=>{
+            const data = response.data;
+            props.onLoggedIn(data);
+        }).catch((e)=>{
+            alert("That did not work. Please try again.");
+            console.log("no such user");
+        });
+    };
+    return /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Container), {
+        className: "login-form",
+        __source: {
+            fileName: "src/components/login-view/login-view.jsx",
+            lineNumber: 63,
+            columnNumber: 9
+        },
+        __self: this
+    }, /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Form), {
+        className: "login-form bg-col lining",
+        __source: {
+            fileName: "src/components/login-view/login-view.jsx",
+            lineNumber: 64,
+            columnNumber: 13
+        },
+        __self: this
+    }, /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Form).Group, {
+        className: "mb-4",
+        controlId: "formUsername",
+        __source: {
+            fileName: "src/components/login-view/login-view.jsx",
+            lineNumber: 65,
+            columnNumber: 17
+        },
+        __self: this
+    }, /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Form).Label, {
+        __source: {
+            fileName: "src/components/login-view/login-view.jsx",
+            lineNumber: 66,
+            columnNumber: 21
+        },
+        __self: this
+    }, "Username:"), /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Form).Control, {
+        type: "text",
+        placeholder: "Enter username",
+        value: username,
+        onChange: (e)=>setUsername(e.target.value),
+        __source: {
+            fileName: "src/components/login-view/login-view.jsx",
+            lineNumber: 67,
+            columnNumber: 21
+        },
+        __self: this
+    }), usernameErr && /*#__PURE__*/ (0, _reactDefault.default).createElement("p", {
+        __source: {
+            fileName: "src/components/login-view/login-view.jsx",
+            lineNumber: 69,
+            columnNumber: 37
+        },
+        __self: this
+    }, usernameErr)), /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Form).Group, {
+        className: "mb-5",
+        controlId: "formPassword",
+        __source: {
+            fileName: "src/components/login-view/login-view.jsx",
+            lineNumber: 72,
+            columnNumber: 17
+        },
+        __self: this
+    }, /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Form).Label, {
+        __source: {
+            fileName: "src/components/login-view/login-view.jsx",
+            lineNumber: 73,
+            columnNumber: 21
+        },
+        __self: this
+    }, "Password:"), /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Form).Control, {
+        type: "password",
+        placeholder: "Password",
+        value: password,
+        onChange: (e)=>setPassword(e.target.value),
+        __source: {
+            fileName: "src/components/login-view/login-view.jsx",
+            lineNumber: 74,
+            columnNumber: 21
+        },
+        __self: this
+    }), passwordErr && /*#__PURE__*/ (0, _reactDefault.default).createElement("p", {
+        __source: {
+            fileName: "src/components/login-view/login-view.jsx",
+            lineNumber: 76,
+            columnNumber: 37
+        },
+        __self: this
+    }, passwordErr)), /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Button), {
+        type: "submit",
+        onClick: handleSubmit,
+        __source: {
+            fileName: "src/components/login-view/login-view.jsx",
+            lineNumber: 78,
+            columnNumber: 17
+        },
+        __self: this
+    }, "Log In")));
+}
+_s(LoginView, "bu3RTtfm4zH8nbQBLPx5pzN3ays=");
+_c = LoginView;
+LoginView.propTypes = {
+    user: (0, _propTypesDefault.default).shape({
+        Username: (0, _propTypesDefault.default).string.isRequired,
+        Password: (0, _propTypesDefault.default).string.isRequired
+    }),
+    onLoggedIn: (0, _propTypesDefault.default).func.isRequired
+};
+const mapStateToProps = (state)=>{
+    return {
+        user: state.user
+    };
+};
+exports.default = (0, _reactRedux.connect)(mapStateToProps, {
+    setUser: (0, _actions.setUser)
+})(LoginView);
+var _c;
+$RefreshReg$(_c, "LoginView");
+
+  $parcel$ReactRefreshHelpers$9fee.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react":"21dqq","axios":"jo6P5","prop-types":"7wKI2","react-router-dom":"cHIiW","react-bootstrap":"3AD9A","./login-view.scss":"e57ax","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-redux":"bdVon","../../actions/actions":"biFwH"}],"e57ax":[function() {},{}],"3U8r7":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$789c = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -41680,7 +41995,7 @@ $RefreshReg$(_c, "RegistrationView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","axios":"jo6P5","react-bootstrap":"3AD9A","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","prop-types":"7wKI2","./registration-view.scss":"clIxH"}],"clIxH":[function() {},{}],"ggaUx":[function(require,module,exports) {
+},{"react":"21dqq","axios":"jo6P5","react-bootstrap":"3AD9A","./registration-view.scss":"clIxH","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","prop-types":"7wKI2"}],"clIxH":[function() {},{}],"ggaUx":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$e9f6 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -41880,7 +42195,7 @@ class MovieView extends (0, _reactDefault.default).Component {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","axios":"jo6P5","react-bootstrap":"3AD9A","react-router-dom":"cHIiW","./movie-view.scss":"jnlR5"}],"jnlR5":[function() {},{}],"9tpci":[function(require,module,exports) {
+},{"react":"21dqq","react-router-dom":"cHIiW","react-bootstrap":"3AD9A","./movie-view.scss":"jnlR5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","axios":"jo6P5"}],"jnlR5":[function() {},{}],"9tpci":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$ad4a = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -42589,322 +42904,7 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps, {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","react-bootstrap":"3AD9A","axios":"jo6P5","./profile-view.scss":"eyKYH","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../../actions/actions":"biFwH","react-redux":"bdVon","react-router-dom":"cHIiW"}],"eyKYH":[function() {},{}],"eBaMl":[function() {},{}],"9YtA0":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$9fee = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$9fee.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "LoginView", ()=>LoginView);
-var _react = require("react");
-var _reactDefault = parcelHelpers.interopDefault(_react);
-var _reactBootstrap = require("react-bootstrap");
-var _reactRouterDom = require("react-router-dom");
-var _axios = require("axios");
-var _axiosDefault = parcelHelpers.interopDefault(_axios);
-var _propTypes = require("prop-types");
-var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
-var _reactRedux = require("react-redux");
-var _actions = require("../../actions/actions");
-var _loginViewScss = require("./login-view.scss");
-var _s = $RefreshSig$();
-function LoginView(props) {
-    _s();
-    const [username, setUsername] = (0, _react.useState)("");
-    const [password, setPassword] = (0, _react.useState)("");
-    const [usernameErr, setUsernameErr] = (0, _react.useState)("");
-    const [passwordErr, setPasswordErr] = (0, _react.useState)("");
-    const validate = ()=>{
-        let isReq = true;
-        if (!username) {
-            setUsernameErr("Username required");
-            isReq = false;
-        } else if (username.length < 5) {
-            setUsernameErr("Username must be at least 5 characters long");
-            isReq = false;
-        }
-        if (!password) {
-            setPasswordErr("Password Required");
-            isReq = false;
-        } else if (password.length < 6) {
-            setPasswordErr("Password must be at least 6 characters long");
-            isReq = false;
-        }
-        return isReq;
-    };
-    //Requests server for authentication
-    //then calls props.onLoggedIn(username)
-    const handleSubmit = (e)=>{
-        e.preventDefault();
-        const isReq = validate();
-        if (isReq) (0, _axiosDefault.default).post("https://gentle-reef-88518.herokuapp.com/login", {
-            Username: username,
-            Password: password
-        }).then((response)=>{
-            const data = response.data;
-            props.onLoggedIn(data);
-        }).catch((e)=>{
-            alert("That did not work. Please try again.");
-            console.log("no such user");
-        });
-    };
-    return /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Container), {
-        className: "login-form",
-        __source: {
-            fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 63,
-            columnNumber: 9
-        },
-        __self: this
-    }, /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Form), {
-        className: "login-form bg-col lining",
-        __source: {
-            fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 64,
-            columnNumber: 13
-        },
-        __self: this
-    }, /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Form).Group, {
-        className: "mb-4",
-        controlId: "formUsername",
-        __source: {
-            fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 65,
-            columnNumber: 17
-        },
-        __self: this
-    }, /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Form).Label, {
-        __source: {
-            fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 66,
-            columnNumber: 21
-        },
-        __self: this
-    }, "Username:"), /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Form).Control, {
-        type: "text",
-        placeholder: "Enter username",
-        value: username,
-        onChange: (e)=>setUsername(e.target.value),
-        __source: {
-            fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 67,
-            columnNumber: 21
-        },
-        __self: this
-    }), usernameErr && /*#__PURE__*/ (0, _reactDefault.default).createElement("p", {
-        __source: {
-            fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 69,
-            columnNumber: 37
-        },
-        __self: this
-    }, usernameErr)), /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Form).Group, {
-        className: "mb-5",
-        controlId: "formPassword",
-        __source: {
-            fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 72,
-            columnNumber: 17
-        },
-        __self: this
-    }, /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Form).Label, {
-        __source: {
-            fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 73,
-            columnNumber: 21
-        },
-        __self: this
-    }, "Password:"), /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Form).Control, {
-        type: "password",
-        placeholder: "Password",
-        value: password,
-        onChange: (e)=>setPassword(e.target.value),
-        __source: {
-            fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 74,
-            columnNumber: 21
-        },
-        __self: this
-    }), passwordErr && /*#__PURE__*/ (0, _reactDefault.default).createElement("p", {
-        __source: {
-            fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 76,
-            columnNumber: 37
-        },
-        __self: this
-    }, passwordErr)), /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Button), {
-        type: "submit",
-        onClick: handleSubmit,
-        __source: {
-            fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 78,
-            columnNumber: 17
-        },
-        __self: this
-    }, "Log In")));
-}
-_s(LoginView, "bu3RTtfm4zH8nbQBLPx5pzN3ays=");
-_c = LoginView;
-LoginView.propTypes = {
-    user: (0, _propTypesDefault.default).shape({
-        Username: (0, _propTypesDefault.default).string.isRequired,
-        Password: (0, _propTypesDefault.default).string.isRequired
-    }),
-    onLoggedIn: (0, _propTypesDefault.default).func.isRequired
-};
-const mapStateToProps = (state)=>{
-    return {
-        user: state.user
-    };
-};
-exports.default = (0, _reactRedux.connect)(mapStateToProps, {
-    setUser: (0, _actions.setUser)
-})(LoginView);
-var _c;
-$RefreshReg$(_c, "LoginView");
-
-  $parcel$ReactRefreshHelpers$9fee.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react":"21dqq","react-bootstrap":"3AD9A","react-router-dom":"cHIiW","axios":"jo6P5","prop-types":"7wKI2","react-redux":"bdVon","../../actions/actions":"biFwH","./login-view.scss":"e57ax","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"e57ax":[function() {},{}],"04Psr":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$9119 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$9119.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "MenuBar", ()=>MenuBar);
-var _react = require("react");
-var _reactDefault = parcelHelpers.interopDefault(_react);
-var _reactBootstrap = require("react-bootstrap");
-var _reactRedux = require("react-redux");
-var _actions = require("../../actions/actions");
-var _navBarScss = require("./nav-bar.scss");
-function MenuBar({ user  }) {
-    const onLoggedOut = ()=>{
-        localStorage.clear();
-        window.open("/", "_self");
-    };
-    const isAuth = ()=>{
-        if (typeof window == "undefined") return false;
-        if (localStorage.getItem("token")) return localStorage.getItem("token");
-        else return false;
-    };
-    return /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Navbar), {
-        className: "main-nav",
-        sticky: "top",
-        bg: "dark",
-        expand: "sm",
-        variant: "dark",
-        __source: {
-            fileName: "src/components/nav-bar/nav-bar.jsx",
-            lineNumber: 27,
-            columnNumber: 9
-        },
-        __self: this
-    }, /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Container), {
-        __source: {
-            fileName: "src/components/nav-bar/nav-bar.jsx",
-            lineNumber: 28,
-            columnNumber: 13
-        },
-        __self: this
-    }, /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Navbar).Brand, {
-        className: "navbar-logo",
-        href: "/",
-        __source: {
-            fileName: "src/components/nav-bar/nav-bar.jsx",
-            lineNumber: 29,
-            columnNumber: 17
-        },
-        __self: this
-    }, "myFlix"), /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Navbar).Toggle, {
-        "aria-controls": "responsive-navbar-nav",
-        __source: {
-            fileName: "src/components/nav-bar/nav-bar.jsx",
-            lineNumber: 30,
-            columnNumber: 17
-        },
-        __self: this
-    }), /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Navbar).Collapse, {
-        id: "responsive-navbar-nav",
-        __source: {
-            fileName: "src/components/nav-bar/nav-bar.jsx",
-            lineNumber: 31,
-            columnNumber: 17
-        },
-        __self: this
-    }, /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Nav), {
-        className: "ml-auto",
-        __source: {
-            fileName: "src/components/nav-bar/nav-bar.jsx",
-            lineNumber: 32,
-            columnNumber: 21
-        },
-        __self: this
-    }, isAuth() && /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Nav).Link, {
-        href: `/users/${user}`,
-        __source: {
-            fileName: "src/components/nav-bar/nav-bar.jsx",
-            lineNumber: 34,
-            columnNumber: 25
-        },
-        __self: this
-    }, user), isAuth() && /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Button), {
-        variant: "link",
-        onClick: ()=>{
-            onLoggedOut();
-        },
-        __source: {
-            fileName: "src/components/nav-bar/nav-bar.jsx",
-            lineNumber: 37,
-            columnNumber: 25
-        },
-        __self: this
-    }, "Logout"), !isAuth() && /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Nav).Link, {
-        href: "/",
-        __source: {
-            fileName: "src/components/nav-bar/nav-bar.jsx",
-            lineNumber: 40,
-            columnNumber: 25
-        },
-        __self: this
-    }, "Login"), !isAuth() && /*#__PURE__*/ (0, _reactDefault.default).createElement((0, _reactBootstrap.Nav).Link, {
-        href: "/register",
-        __source: {
-            fileName: "src/components/nav-bar/nav-bar.jsx",
-            lineNumber: 43,
-            columnNumber: 25
-        },
-        __self: this
-    }, "Register")))));
-}
-_c = MenuBar;
-let mapStateToProps = (state)=>{
-    return {
-        movies: state.movies,
-        user: state.user
-    };
-};
-exports.default = (0, _reactRedux.connect)(mapStateToProps, {
-    setUser: (0, _actions.setUser)
-})(MenuBar);
-var _c;
-$RefreshReg$(_c, "MenuBar");
-
-  $parcel$ReactRefreshHelpers$9119.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react":"21dqq","react-bootstrap":"3AD9A","react-redux":"bdVon","../../actions/actions":"biFwH","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./nav-bar.scss":"aUy9V"}],"aUy9V":[function() {},{}],"lJZlQ":[function() {},{}],"fOPxo":[function(require,module,exports) {
+},{"react":"21dqq","react-bootstrap":"3AD9A","axios":"jo6P5","react-router-dom":"cHIiW","./profile-view.scss":"eyKYH","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../../actions/actions":"biFwH","react-redux":"bdVon"}],"eyKYH":[function() {},{}],"eBaMl":[function() {},{}],"lJZlQ":[function() {},{}],"fOPxo":[function(require,module,exports) {
 "use strict";
 var compose = require("redux").compose;
 exports.__esModule = true;
